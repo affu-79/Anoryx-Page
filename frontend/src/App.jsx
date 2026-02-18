@@ -1,0 +1,55 @@
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext.jsx';
+import Navbar from './components/Navbar/Navbar.jsx';
+import Footer from './components/Footer/Footer.jsx';
+import Home from './pages/Home.jsx';
+import PlatformOverview from './pages/platform/Overview.jsx';
+import PlatformArchitecturePage from './pages/platform/Architecture.jsx';
+import PlatformIntelligenceCore from './pages/platform/IntelligenceCore.jsx';
+import PlatformAutonomousAgentSystem from './pages/platform/AutonomousAgentSystem.jsx';
+import PlatformSecurityTrust from './pages/platform/SecurityTrust.jsx';
+import SolutionsEnterpriseAutomation from './pages/solutions/EnterpriseAutomation.jsx';
+import SolutionsAIInfrastructure from './pages/solutions/AIInfrastructure.jsx';
+import SolutionsPrivacyFirstAI from './pages/solutions/PrivacyFirstAI.jsx';
+import SolutionsAutonomousDecisionSystems from './pages/solutions/AutonomousDecisionSystems.jsx';
+import SolutionsIndustryApplications from './pages/solutions/IndustryApplications.jsx';
+import Solutions from './pages/solutions/Solutions.jsx';
+import CompanyAbout from './pages/company/About.jsx';
+import CompanyFoundersNote from './pages/company/FoundersNote.jsx';
+import CompanyVisionMission from './pages/company/VisionMission.jsx';
+import Contact from './pages/contact/Contact.jsx';
+import Products from './pages/products/Products.jsx';
+
+function App() {
+  return (
+    <AuthProvider>
+      <div className="appLayout">
+        <Navbar />
+      <main className="appMain">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/platform/overview" element={<PlatformOverview />} />
+          <Route path="/platform/architecture" element={<PlatformArchitecturePage />} />
+          <Route path="/platform/intelligence-core" element={<PlatformIntelligenceCore />} />
+          <Route path="/platform/autonomous-agent-system" element={<PlatformAutonomousAgentSystem />} />
+          <Route path="/platform/security-trust" element={<PlatformSecurityTrust />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/solutions/enterprise-automation" element={<SolutionsEnterpriseAutomation />} />
+          <Route path="/solutions/ai-infrastructure" element={<SolutionsAIInfrastructure />} />
+          <Route path="/solutions/privacy-first-ai" element={<SolutionsPrivacyFirstAI />} />
+          <Route path="/solutions/autonomous-decision-systems" element={<SolutionsAutonomousDecisionSystems />} />
+          <Route path="/solutions/industry-applications" element={<SolutionsIndustryApplications />} />
+          <Route path="/company/about" element={<CompanyAbout />} />
+          <Route path="/company/founders-note" element={<CompanyFoundersNote />} />
+          <Route path="/company/vision-mission" element={<CompanyVisionMission />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/products" element={<Products />} />
+        </Routes>
+      </main>
+        <Footer />
+      </div>
+    </AuthProvider>
+  );
+}
+
+export default App;

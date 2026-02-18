@@ -1,0 +1,620 @@
+/* ══════════════════════════════════════════════════════════════
+   MockUI — Anoryx Privacy Dashboard (Light Theme)
+   Compact privacy-first architecture showcase.
+   ══════════════════════════════════════════════════════════════ */
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f8faff 0%, #eef2f9 100%);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    overflow: visible;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 6px;
+}
+
+/* ── Shared Card ──────────────────────────────────────────── */
+
+.card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    padding: 6px 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ── 1. Privacy Shield — top-left ─────────────────────────── */
+
+.shield {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.shieldIconWrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.shieldIcon {
+    width: 20px;
+    height: 20px;
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shieldIcon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.pulseRing {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid #10b981;
+    animation: pulseRingAnim 2.5s ease-out infinite;
+}
+
+@keyframes pulseRingAnim {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.shieldBody {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.shieldTitle {
+    font-size: 9px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.2;
+}
+
+.shieldStatus {
+    font-size: 8px;
+    font-weight: 600;
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    line-height: 1;
+}
+
+.liveDot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #10b981;
+    animation: liveBlink 1.5s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes liveBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.shieldMeta {
+    font-size: 7px;
+    font-weight: 500;
+    color: #94a3b8;
+    line-height: 1;
+}
+
+/* ── 2. Security Metrics — top-right ──────────────────────── */
+
+.security {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.lockIcon {
+    width: 18px;
+    height: 18px;
+    color: #8b5cf6;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lockIcon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.secBody {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.secTitle {
+    font-size: 9px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.2;
+}
+
+.secCheck {
+    font-size: 8px;
+    font-weight: 600;
+    color: #8b5cf6;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    line-height: 1;
+}
+
+.checkAnim {
+    width: 10px;
+    height: 10px;
+    color: #8b5cf6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: checkPop 2s ease-in-out infinite;
+}
+
+.checkAnim svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes checkPop {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+/* ── 3. Data Flow — center ────────────────────────────────── */
+
+.dataFlow {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 4px 0;
+}
+
+.node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.nodeCircle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+}
+
+.nodeCircle svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.node1 .nodeCircle {
+    border-color: rgba(59, 130, 246, 0.3);
+    background: rgba(59, 130, 246, 0.06);
+    color: #3b82f6;
+}
+
+.node2 .nodeCircle {
+    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(139, 92, 246, 0.06);
+    color: #8b5cf6;
+    animation: nodeGlow 3s ease-in-out infinite;
+}
+
+.node3 .nodeCircle {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(16, 185, 129, 0.06);
+    color: #10b981;
+}
+
+@keyframes nodeGlow {
+    0%, 100% { box-shadow: 0 0 0 rgba(139, 92, 246, 0); }
+    50% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.15); }
+}
+
+.nodeLabel {
+    font-size: 7px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+}
+
+/* Connectors between nodes */
+
+.connector {
+    position: relative;
+    width: 28px;
+    height: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.connLine {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #e2e8f0, #cbd5e1, #e2e8f0);
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #3b82f6;
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.4);
+    animation: particleMove 2s linear infinite;
+}
+
+.conn2 .particle {
+    background: #8b5cf6;
+    box-shadow: 0 0 6px rgba(139, 92, 246, 0.4);
+    animation-delay: 1s;
+}
+
+@keyframes particleMove {
+    0% { left: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: calc(100% - 3px); opacity: 0; }
+}
+
+/* ── 4. AI Agent — bottom-left ────────────────────────────── */
+
+.agent {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.agentIcon {
+    width: 16px;
+    height: 16px;
+    color: #f59e0b;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: agentSpin 8s linear infinite;
+}
+
+.agentIcon svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes agentSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.agentBody {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.agentTitle {
+    font-size: 9px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.2;
+}
+
+.agentStatus {
+    font-size: 8px;
+    font-weight: 600;
+    color: #f59e0b;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    line-height: 1;
+}
+
+/* ── 5. Access Controls — bottom-right ────────────────────── */
+
+.controls {
+    grid-column: 2;
+    grid-row: 3;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ctrlTitle {
+    font-size: 9px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1;
+}
+
+.toggleRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.toggleLabel {
+    font-size: 8px;
+    font-weight: 500;
+    color: #94a3b8;
+    line-height: 1;
+}
+
+.toggle {
+    width: 22px;
+    height: 11px;
+    border-radius: 6px;
+    position: relative;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.toggle::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    top: 1.5px;
+    transition: left 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.toggleOn {
+    background: #10b981;
+}
+
+.toggleOn::after {
+    left: 12px;
+}
+
+.toggleOff {
+    background: #cbd5e1;
+}
+
+.toggleOff::after {
+    left: 1.5px;
+}
+
+/* ── 6. Toast — right side floating (Privacy Check Complete) ───────────────────────── */
+
+.toast {
+    position: absolute;
+    right: 42px;
+    /* shifted 50px left from default */
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #ffffff;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    padding: 7px 11px;
+    white-space: nowrap;
+    animation: toastCycle 5s ease-in-out infinite;
+}
+
+.toastDot {
+    width: 13px;
+    height: 13px;
+    color: #10b981;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toastDot svg {
+    width: 100%;
+    height: 100%;
+}
+
+.toastMsg {
+    font-size: 11px;
+    font-weight: 600;
+    color: #10b981;
+    line-height: 1;
+}
+
+@keyframes toastCycle {
+    0%, 100% { opacity: 0; transform: translateX(100%) translateY(-50%) translateY(6px); }
+    15%, 85% { opacity: 1; transform: translateX(100%) translateY(-50%) translateY(0); }
+}
+
+/* ── 7. E2E Notification — top-right floating (End-to-End Encryption) ─────────────── */
+
+.e2eToast {
+    position: absolute;
+    right: -64px;
+    /* shifted 70px right from default (6px - 70px) */
+    top: -6px;
+    transform: translateY(-100%);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #ffffff;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    padding: 6px 9px;
+    white-space: nowrap;
+    animation: e2eCycle 6s ease-in-out 2s infinite;
+    opacity: 0;
+}
+
+.e2eLock {
+    width: 13px;
+    height: 13px;
+    color: #6366f1;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.e2eLock svg {
+    width: 100%;
+    height: 100%;
+}
+
+.e2eText {
+    font-size: 10px;
+    font-weight: 600;
+    color: #6366f1;
+    line-height: 1;
+}
+
+@keyframes e2eCycle {
+    0%, 100% { opacity: 0; transform: translateY(-100%) translateY(4px); }
+    15%, 85% { opacity: 1; transform: translateY(-100%) translateY(0); }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .scene {
+        height: 240px;
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .toast,
+    .e2eToast {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .scene {
+        height: 200px;
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .card {
+        padding: 7px 8px;
+        gap: 6px;
+        border-radius: 8px;
+    }
+
+    .shieldIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .lockIcon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .agentIcon {
+        width: 17px;
+        height: 17px;
+    }
+
+    .shieldTitle,
+    .secTitle,
+    .agentTitle,
+    .ctrlTitle {
+        font-size: 9px;
+    }
+
+    .shieldStatus,
+    .secCheck,
+    .agentStatus,
+    .toggleLabel {
+        font-size: 8px;
+    }
+
+    .shieldMeta {
+        font-size: 7px;
+    }
+
+    .liveDot {
+        width: 4px;
+        height: 4px;
+    }
+
+    .checkAnim {
+        width: 10px;
+        height: 10px;
+    }
+
+    .nodeCircle {
+        width: 30px;
+        height: 30px;
+    }
+
+    .nodeCircle svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .connector {
+        width: 24px;
+    }
+
+    .controls {
+        gap: 4px;
+    }
+
+    .toggle {
+        width: 24px;
+        height: 12px;
+        border-radius: 6px;
+    }
+
+    .toggle::after {
+        width: 8px;
+        height: 8px;
+        top: 2px;
+    }
+
+    .toggleOn::after {
+        left: 14px;
+    }
+}

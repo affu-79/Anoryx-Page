@@ -1,0 +1,225 @@
+/**
+ * Global Styles
+ *
+ * CSS reset, base element styles, and utility classes.
+ * Imports theme.css to access design tokens.
+ */
+
+@import './theme.css';
+
+/* ── Font Imports ──────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap');
+@import '../assets/chillaxFont/Fonts/WEB/css/chillax.css';
+
+/* ── CSS Reset ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base Element Styles ─────────────────────────────────── */
+html {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-default);
+  min-height: 100vh;
+}
+
+/* ── App layout: sticky footer (no gap below footer on short pages) ── */
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.appMain {
+  flex: 1;
+}
+
+/* ── Typography Base ─────────────────────────────────────── */
+h1 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+h2 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+h3 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+p {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-secondary-hover);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ── Utility Classes ─────────────────────────────────────── */
+
+/** Centered content container with max-width constraint */
+.container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/** Standard vertical section spacing */
+.section {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-7);
+}
+
+/* ── Focus Styles (Accessibility) ────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+/* ── Responsive Overrides ────────────────────────────────── */
+
+/* Tablet (768px – 1024px) */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  h2 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .section {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .section {
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-5);
+  }
+
+  .container {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+}
+
+/* Small Phone (< 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .section {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+  }
+
+  .container {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+}
+

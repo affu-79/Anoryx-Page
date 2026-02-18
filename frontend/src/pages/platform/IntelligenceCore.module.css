@@ -1,0 +1,456 @@
+/**
+ * Intelligence Core — foundational infrastructure page.
+ * Premium, engineered, precise. Blue palette, strong typography, minimal intentional motion.
+ * Layout distinct from Overview and Architecture.
+ */
+
+.page {
+  background: #0A0E17;
+  color: #E2E8F0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Stripe-style: vertical lines framing content, same grey as navbar bottom border */
+.pageStrip {
+  max-width: 1280px;
+  margin: 0 auto;
+  border-left: 1px solid #334155;
+  border-right: 1px solid #334155;
+  min-height: 100%;
+}
+
+/* ── Section 1: Hero (asymmetric split) ───────────────────────── */
+.hero {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--navbar-height, 64px) + 48px) 32px 64px;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: #334155;
+  pointer-events: none;
+}
+
+.heroInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.heroContent {
+  max-width: 560px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.heroViz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+}
+
+.heroTitle {
+  font-family: var(--font-family-heading, system-ui, sans-serif);
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 12px;
+}
+
+.heroSubtitle {
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 500;
+  color: #94A3B8;
+  margin: 0 0 24px;
+  line-height: 1.4;
+}
+
+.heroBody {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #94A3B8;
+  margin: 0 0 32px;
+}
+
+.heroCTAs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: #1E6BFF;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 12px rgba(30, 107, 255, 0.25);
+}
+
+.ctaPrimary:hover {
+  background: #2563EB;
+  box-shadow: 0 4px 20px rgba(30, 107, 255, 0.35);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #E2E8F0;
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.ctaSecondary:hover {
+  border-color: #1E6BFF;
+  background: rgba(30, 107, 255, 0.08);
+}
+
+/* ── Section 2: Deep Technical Block ───────────────────────────── */
+.technical {
+  position: relative;
+  padding: 80px 32px 96px;
+  border-top: 1px solid #1E293B;
+}
+
+.technical::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: #334155;
+  pointer-events: none;
+}
+
+.readingIndicator {
+  position: absolute;
+  left: 32px;
+  top: 80px;
+  width: 2px;
+  background: linear-gradient(180deg, #1E6BFF, rgba(30, 107, 255, 0.2));
+  border-radius: 2px;
+  transition: height 0.15s ease-out;
+  max-height: calc(100% - 80px);
+}
+
+.technicalInner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-left: 40px;
+}
+
+.technicalHeading {
+  font-family: var(--font-family-heading, system-ui, sans-serif);
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 40px;
+}
+
+.technicalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.technicalPara {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #94A3B8;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.technicalContent.visible .technicalPara {
+  animation: technicalFadeIn 0.8s ease-out forwards;
+}
+
+.technicalContent.visible .technicalPara:nth-child(1) { animation-delay: 0.1s; }
+.technicalContent.visible .technicalPara:nth-child(2) { animation-delay: 0.25s; }
+.technicalContent.visible .technicalPara:nth-child(3) { animation-delay: 0.4s; }
+.technicalContent.visible .technicalPara:nth-child(4) { animation-delay: 0.55s; }
+.technicalContent.visible .technicalPara:nth-child(5) { animation-delay: 0.7s; }
+
+@keyframes technicalFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Section 3: Capabilities Grid ────────────────────────────── */
+.capabilities {
+  position: relative;
+  padding: 80px 32px 96px;
+  border-top: 1px solid #1E293B;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.capabilities::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: #334155;
+  pointer-events: none;
+}
+
+.capabilitiesInner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.capabilitiesHeading {
+  font-family: var(--font-family-heading, system-ui, sans-serif);
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+.capabilitiesLead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #94A3B8;
+  margin: 0 0 48px;
+  max-width: 640px;
+}
+
+.capGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.capCard {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid #1E293B;
+  border-radius: 12px;
+  padding: 28px 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: capCardFade 0.7s ease-out forwards;
+}
+
+.capCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(30, 107, 255, 0.08);
+  border-color: rgba(30, 107, 255, 0.25);
+}
+
+.capCardTitle {
+  font-family: var(--font-family-heading, system-ui, sans-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.capCardBody {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #94A3B8;
+  margin: 0;
+}
+
+@keyframes capCardFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Section 4: Trust and Reliability ────────────────────────── */
+.trust {
+  position: relative;
+  padding: 80px 32px 96px;
+  border-top: 1px solid #1E293B;
+  overflow: hidden;
+}
+
+.trust::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background: #334155;
+  pointer-events: none;
+}
+
+.trustLine {
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  width: 120%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(30, 107, 255, 0.12) 25%, rgba(30, 107, 255, 0.22) 50%, rgba(30, 107, 255, 0.12) 75%, transparent 100%);
+  animation: trustLineMove 14s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes trustLineMove {
+  0% { transform: translateY(-50%) translateX(0); opacity: 0.5; }
+  50% { transform: translateY(-50%) translateX(2%); opacity: 0.9; }
+  100% { transform: translateY(-50%) translateX(0); opacity: 0.5; }
+}
+
+.trustInner {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.trustHeading {
+  font-family: var(--font-family-heading, system-ui, sans-serif);
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 32px;
+}
+
+.trustContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.trustPara {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #94A3B8;
+  margin: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+/* Tablet: first section layout like mobile (stacked, same padding), rest unchanged */
+@media (max-width: 1023px) {
+  .hero {
+    padding: calc(var(--navbar-height, 64px) + 32px) 20px 48px;
+  }
+
+  .heroInner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .heroContent {
+    max-width: 100%;
+  }
+
+  .heroCTAs {
+    justify-content: center;
+  }
+
+  .heroViz {
+    min-height: 320px;
+  }
+
+  .readingIndicator {
+    left: 20px;
+  }
+
+  .technicalInner {
+    padding-left: 32px;
+  }
+
+  .capGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: calc(var(--navbar-height, 64px) + 32px) 20px 48px;
+  }
+
+  .technical,
+  .capabilities,
+  .trust {
+    padding: 56px 20px 64px;
+  }
+
+  .readingIndicator {
+    left: 12px;
+    top: 56px;
+  }
+
+  .technicalInner {
+    padding-left: 28px;
+  }
+
+  .capCard {
+    padding: 20px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trustLine,
+  .readingIndicator {
+    animation: none;
+  }
+
+  .capCard {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .technicalPara {
+    opacity: 1;
+    transform: none;
+  }
+
+  .technicalContent.visible .technicalPara {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

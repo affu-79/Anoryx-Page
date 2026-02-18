@@ -1,0 +1,227 @@
+/**
+ * Legal Modal — Premium overlay with backdrop blur, enterprise styling.
+ * Stripe/Notion/Linear-style modal.
+ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: rgba(9, 30, 66, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: legalOverlayIn 0.3s ease forwards;
+}
+
+.overlay[data-closing='true'] {
+  animation: legalOverlayOut 0.25s ease forwards;
+}
+
+@keyframes legalOverlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes legalOverlayOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.dialog {
+  position: relative;
+  width: 100%;
+  max-width: min(920px, 95vw);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 82, 204, 0.12);
+  box-shadow: 0 24px 48px rgba(9, 30, 66, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  animation: legalDialogIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  overflow: hidden;
+}
+
+.overlay[data-closing='true'] .dialog {
+  animation: legalDialogOut 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes legalDialogIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes legalDialogOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+.header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid rgba(0, 82, 204, 0.1);
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: var(--color-text-primary);
+  background: rgba(9, 30, 66, 0.06);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-6);
+  overscroll-behavior: contain;
+}
+
+.body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.body::-webkit-scrollbar-track {
+  background: rgba(9, 30, 66, 0.04);
+  border-radius: 4px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background: rgba(0, 82, 204, 0.25);
+  border-radius: 4px;
+}
+
+.body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 82, 204, 0.4);
+}
+
+.content {
+  max-width: 65ch;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.content h2 {
+  font-family: var(--font-family-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: var(--space-6) 0 var(--space-2);
+}
+
+.content h2:first-child {
+  margin-top: 0;
+}
+
+.content h3 {
+  font-family: var(--font-family-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: var(--space-4) 0 var(--space-1);
+}
+
+.content p {
+  margin: 0 0 var(--space-3);
+}
+
+.content ul {
+  margin: 0 0 var(--space-3);
+  padding-left: 1.25em;
+}
+
+.content li {
+  margin-bottom: 0.35em;
+}
+
+.content strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(0, 82, 204, 0.08);
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    padding: var(--space-3);
+  }
+
+  .dialog {
+    max-height: 90vh;
+    border-radius: 14px;
+  }
+
+  .header {
+    padding: var(--space-4) var(--space-4);
+  }
+
+  .body {
+    padding: var(--space-4);
+  }
+
+  .content {
+    font-size: 14px;
+  }
+}

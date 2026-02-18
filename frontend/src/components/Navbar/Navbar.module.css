@@ -1,0 +1,844 @@
+/* Navbar — Jira-style top navigation shell, light by default */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: var(--navbar-height);
+  background-color: var(--color-bg-default);
+  border-bottom: none;
+}
+
+/* Dark theme — Founder's Note, Intelligence Core, etc. */
+.navbarDark {
+  background: linear-gradient(120deg, #0c1222 0%, #1a2744 45%, #0f172a 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbarDark .brandWord {
+  color: #fff;
+}
+
+.navbarDark .logoBox {
+  background-color: rgba(30, 41, 59, 0.8);
+}
+
+.navbarDark .logoBrandLink:hover .logoBox {
+  background-color: rgba(51, 65, 85, 0.9);
+}
+
+.navbarDark .dropdownTrigger {
+  color: #E2E8F0;
+}
+
+.navbarDark .dropdownTrigger:hover,
+.navbarDark .dropdownWrapperActive .dropdownTrigger {
+  color: #fff;
+  background-color: rgba(51, 65, 85, 0.6);
+}
+
+.navbarDark .dropdownPanel {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.navbarDark .dropdownLink {
+  color: #94A3B8;
+}
+
+.navbarDark .dropdownLink:hover {
+  background-color: rgba(30, 41, 59, 0.8);
+  color: #1E6BFF;
+}
+
+.navbarDark .dropdownLinkIcon {
+  color: #64748B;
+}
+
+.navbarDark .dropdownLink:hover .dropdownLinkIcon {
+  color: #1E6BFF;
+}
+
+.navbarDark .contactLink {
+  color: #E2E8F0;
+}
+
+.navbarDark .contactLink:hover {
+  color: #1E6BFF;
+  background-color: rgba(51, 65, 85, 0.6);
+}
+
+.navbarDark .divider {
+  color: #334155;
+}
+
+.navbarDark .signupLink {
+  color: #E2E8F0;
+}
+
+.navbarDark .signupLink:hover {
+  color: #fff;
+  background-color: rgba(51, 65, 85, 0.6);
+}
+
+.navbarDark .avatarButton {
+  background: var(--color-secondary);
+}
+
+.navbarDark .avatarButton:hover {
+  background: #1E6BFF;
+}
+
+.navbarDark .userDropdown {
+  background-color: #0f172a;
+  border-color: #334155;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.navbarDark .userDropdownEmail {
+  color: #94A3B8;
+}
+
+.navbarDark .userDropdownInput {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: #334155;
+  color: #E2E8F0;
+}
+
+.navbarDark .userDropdownLogout {
+  color: #94A3B8;
+  border-color: #334155;
+}
+
+.navbarDark .userDropdownLogout:hover {
+  background: rgba(51, 65, 85, 0.6);
+  color: #fff;
+}
+
+.navbarDark .userDropdownSaved {
+  color: #1E6BFF;
+}
+
+.navbarDark .homeLinkDesktop {
+  color: #E2E8F0;
+}
+
+.navbarDark .homeLinkDesktop:hover {
+  color: #1E6BFF;
+  background-color: rgba(51, 65, 85, 0.6);
+}
+
+.navbarDark .homeIcon {
+  color: #94A3B8;
+}
+
+.navbarDark .homeLinkDesktop:hover .homeIcon {
+  color: #1E6BFF;
+}
+
+.navbarDark .hamburgerLine {
+  background-color: #E2E8F0;
+}
+
+.navbarDark .hamburger:hover {
+  background-color: rgba(51, 65, 85, 0.6);
+}
+
+/* Mobile dark menu */
+.navbarDark .navItemsOpen {
+  background-color: #0A0E17;
+  border-top: 1px solid #334155;
+}
+
+.navbarDark .dropdownPanel {
+  background-color: rgba(15, 23, 42, 0.95);
+}
+
+.navbarDark .contactLink,
+.navbarDark .signupLink,
+.navbarDark .homeLinkMobile {
+  border-top-color: #334155;
+  color: #E2E8F0;
+}
+
+.navbarDark .homeLinkMobile:hover,
+.navbarDark .signupLink:hover {
+  color: #1E6BFF;
+  background-color: rgba(51, 65, 85, 0.6);
+}
+
+.navbarInner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+  position: relative;
+}
+
+/* ── Logo + Brand link (both clickable → home) ────────────── */
+
+.logoBrandLink {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logoBrandLink:hover .logoBox {
+  background-color: var(--color-secondary-hover);
+}
+
+/* ── Logo Box ────────────────────────────────────────────── */
+
+.logoBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--navbar-height);
+  height: var(--navbar-height);
+  background-color: var(--color-secondary);
+  border-radius: 0;
+  transition: background-color var(--transition-fast);
+  flex-shrink: 0;
+  z-index: 2;
+  position: relative;
+}
+
+.logoImage {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(1) contrast(1.1);
+}
+
+/* ── Brand Name Animation ────────────────────────────────── */
+
+.brandName {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: var(--space-3);
+  margin-right: 70px;
+  z-index: 1;
+}
+
+.brandWord {
+  display: inline-block;
+  font-family: var(--font-family-heading);
+  font-size: 17px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  animation: slideIn 0.6s ease forwards;
+  opacity: 0;
+  transform: translateX(-80px);
+}
+
+.word1 {
+  animation-delay: 0s;
+}
+
+.word2 {
+  animation-delay: 0.3s;
+}
+
+.word3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Nav Items (desktop: row | mobile: dropdown panel) ──── */
+
+.navItems {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: var(--space-5);
+  padding-right: var(--space-4);
+}
+
+/* ── Dropdown Wrapper ────────────────────────────────────── */
+
+.dropdownWrapper {
+  position: relative;
+}
+
+.dropdownTrigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.dropdownTrigger:hover,
+.dropdownWrapperActive .dropdownTrigger {
+  color: var(--color-secondary);
+  background-color: var(--color-secondary-light);
+}
+
+/* Chevron icon */
+.chevron {
+  transition: transform var(--transition-fast), color var(--transition-fast);
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown Panel ──────────────────────────────────────── */
+
+.dropdownPanel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 200px;
+  background-color: var(--color-bg-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(9, 30, 66, 0.12);
+  padding: var(--space-2) 0;
+  z-index: 200;
+  animation: dropdownFadeIn 150ms ease;
+}
+
+.dropdownLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px var(--space-4);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.dropdownLinkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  color: #5e6c84;
+  transition: color var(--transition-fast);
+}
+
+.dropdownLink:hover {
+  background-color: var(--color-bg-muted);
+  color: var(--color-secondary);
+}
+
+.dropdownLink:hover .dropdownLinkIcon {
+  color: var(--color-secondary);
+}
+
+@keyframes dropdownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Contact Link ────────────────────────────────────────── */
+
+.contactLink {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.contactLink:hover {
+  color: var(--color-secondary);
+  background-color: var(--color-secondary-light);
+}
+
+/* ── Divider ─────────────────────────────────────────────── */
+
+.divider {
+  color: var(--color-border-default);
+  font-size: var(--font-size-body);
+  user-select: none;
+  margin: 0 var(--space-1);
+}
+
+/* ── Sign Up Link ────────────────────────────────────────── */
+
+.signupLink {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.signupLink:hover {
+  color: #E65100;
+  background-color: #FFF3E0;
+}
+
+/* When used as button (Sign up) */
+button.signupLink {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ── User avatar + dropdown ────────────────────────────────── */
+
+.userMenuWrapper {
+  position: relative;
+  margin-left: var(--space-2);
+  margin-right: var(--space-3);
+}
+
+.avatarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.avatarButton:hover {
+  background: #0065FF;
+}
+
+.avatarCircle {
+  display: block;
+  line-height: 1;
+}
+
+.userDropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 260px;
+  background: var(--color-bg-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(9, 30, 66, 0.15);
+  padding: var(--space-4);
+  z-index: 200;
+  animation: dropdownFadeIn 150ms ease;
+}
+
+.userDropdownEmail {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+  word-break: break-all;
+}
+
+.userDropdownLabel {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+}
+
+.userDropdownInput {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: var(--space-3);
+  font-size: 14px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+}
+
+.userDropdownInput:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+}
+
+.userDropdownSave {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: var(--space-2);
+  background: var(--color-secondary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.userDropdownSave:hover:not(:disabled) {
+  background: #0065FF;
+}
+
+.userDropdownSave:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.userDropdownSaved {
+  font-size: 13px;
+  color: var(--color-secondary);
+  margin: 0 0 var(--space-2) 0;
+  font-weight: 500;
+}
+
+.userDropdownLogout {
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.userDropdownLogout:hover {
+  background: var(--color-bg-muted);
+  color: var(--color-text-primary);
+}
+
+/* ── Home Link Desktop (sibling of navItems → far right) ─────── */
+
+.homeLinkDesktop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  margin-right: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.homeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5e6c84;
+  transition: color var(--transition-fast);
+}
+
+.homeLinkDesktop:hover .homeIcon {
+  color: var(--color-secondary);
+}
+
+.homeLinkDesktop:hover {
+  color: var(--color-secondary);
+  background-color: var(--color-secondary-light);
+}
+
+/* ── Home Link Mobile (inside navItems, for hamburger menu) ──── */
+
+.homeLinkMobile {
+  display: none;
+}
+
+/* ── Hamburger Button — hidden on desktop ────────────────── */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  margin-right: var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.hamburger:hover {
+  background-color: var(--color-bg-muted);
+}
+
+.hamburgerLine {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 1px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+  transform-origin: center;
+}
+
+.line1Open {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.line2Open {
+  opacity: 0;
+}
+
+.line3Open {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Responsive: Tablet & Mobile ─────────────────────────── */
+
+@media (max-width: 1024px) {
+  .navbarInner {
+    padding: 0;
+  }
+
+  .logoImage {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brandWord {
+    font-size: 14px;
+  }
+
+  .brandName {
+    margin-left: var(--space-2);
+  }
+
+  /* Show hamburger, hide nav items by default */
+  .hamburger {
+    display: flex;
+  }
+
+  .navItems {
+    display: none;
+    position: fixed;
+    top: var(--navbar-height);
+    right: 0;
+    left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 0;
+    height: auto;
+    max-height: calc(100vh - var(--navbar-height));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    padding-bottom: 0;
+    background-color: var(--color-bg-default);
+    border-top: 1px solid var(--color-border-default);
+    box-shadow: none;
+    z-index: 150;
+    overflow-y: auto;
+  }
+
+  .navItemsOpen {
+    display: flex;
+  }
+
+  /* Dropdown wrapper — full width on mobile */
+  .dropdownWrapper {
+    width: 100%;
+  }
+
+  .dropdownTrigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 12px var(--space-4) 12px var(--space-3);
+    font-size: var(--font-size-body);
+    border-radius: 0;
+  }
+
+  /* Dropdown panel — inline, no absolute positioning on mobile */
+  .dropdownPanel {
+    position: static;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    background-color: var(--color-bg-muted);
+    animation: none;
+    min-width: unset;
+  }
+
+  .dropdownLink {
+    padding: 10px var(--space-4) 10px var(--space-6);
+    font-size: var(--font-size-small);
+  }
+
+  /* Contact link — full width on mobile */
+  .contactLink {
+    display: block;
+    padding: 12px var(--space-4) 12px var(--space-3);
+    font-size: var(--font-size-body);
+    border-radius: 0;
+    border-top: 1px solid var(--color-border-default);
+    margin-top: var(--space-2);
+    margin-bottom: 0;
+  }
+
+  /* Hide divider on mobile */
+  .divider {
+    display: none;
+  }
+
+  /* Sign up — full width on mobile */
+  .signupLink {
+    display: block;
+    padding: 12px var(--space-4) 12px var(--space-3);
+    font-size: var(--font-size-body);
+    border-radius: 0;
+    margin-bottom: 0;
+    padding-bottom: 12px;
+  }
+
+  .homeLinkDesktop {
+    display: none;
+  }
+
+  .homeLinkMobile {
+    display: block;
+    padding: 12px var(--space-4) 12px var(--space-3);
+    font-size: var(--font-size-body);
+    border-radius: 0;
+    padding-bottom: 12px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-top: 1px solid var(--color-border-default);
+    margin-top: var(--space-2);
+  }
+
+  .homeLinkMobile:hover {
+    color: var(--color-secondary);
+    background-color: var(--color-secondary-light);
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    height: 52px;
+  }
+
+  .logoBox {
+    width: 52px;
+    height: 52px;
+  }
+
+  .logoImage {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brandWord {
+    font-size: 11px;
+  }
+
+  .brandName {
+    gap: 3px;
+    margin-left: var(--space-1);
+    margin-right: var(--space-3);
+  }
+
+  .hamburger {
+    width: 36px;
+    height: 36px;
+    margin-right: var(--space-2);
+  }
+
+  .hamburgerLine {
+    width: 18px;
+  }
+
+  .navItems {
+    top: 52px;
+    max-height: calc(100vh - 52px);
+  }
+
+  .dropdownTrigger {
+    padding: 10px var(--space-3) 10px var(--space-2);
+    font-size: var(--font-size-small);
+  }
+
+  .dropdownLink {
+    padding: 8px var(--space-3) 8px var(--space-5);
+    font-size: 13px;
+  }
+
+  .contactLink {
+    padding: 10px var(--space-3) 10px var(--space-2);
+    font-size: var(--font-size-small);
+  }
+
+  .signupLink {
+    padding: 10px var(--space-3) 10px var(--space-2);
+    font-size: var(--font-size-small);
+  }
+
+  .homeLinkDesktop {
+    display: none;
+  }
+
+  .homeLinkMobile {
+    display: block;
+    padding: 10px var(--space-3) 10px var(--space-2);
+    font-size: var(--font-size-small);
+  }
+}

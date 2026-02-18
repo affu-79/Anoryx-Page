@@ -1,0 +1,583 @@
+/**
+ * Contact — Premium, light theme, enterprise-grade.
+ * Full-viewport horizontal stripes; consistent with homepage.
+ */
+
+.page {
+  background: #FAFBFC;
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+.pageStrip {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-left: 1px solid var(--color-border-default);
+  border-right: 1px solid var(--color-border-default);
+  min-height: 0;
+}
+
+.sectionStripe {
+  position: relative;
+}
+
+.sectionStripe::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  height: 1px;
+  background: var(--color-border-default);
+  pointer-events: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* InView */
+.hero.inView,
+.section.inView,
+.sectionAlt.inView,
+.trustSection.inView {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Section 1: Hero ───────────────────────────────────────── */
+.hero {
+  position: relative;
+  padding: 40px var(--space-4) var(--space-7);
+  text-align: center;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F5FAFF 50%, #FAFBFC 100%);
+  pointer-events: none;
+}
+
+.heroBg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(0, 82, 204, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(0, 82, 204, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.heroLabel {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.heroTitle {
+  font-family: var(--font-family-heading);
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.heroSub {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-5);
+}
+
+.heroCTAs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px var(--space-5);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #0065FF 100%);
+  border: none;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 82, 204, 0.25);
+  transition: transform var(--transition-fast), box-shadow var(--transition-base);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 82, 204, 0.35);
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px var(--space-5);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-secondary);
+  background: #fff;
+  border: 2px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: border-color var(--transition-base), background var(--transition-base), transform var(--transition-fast);
+}
+
+.btnSecondary:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-secondary-light);
+  transform: translateY(-1px);
+}
+
+/* ── Section 2: Contact Options Grid ───────────────────────── */
+.section {
+  padding: var(--space-7) var(--space-4);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.sectionHeading {
+  font-family: var(--font-family-heading);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-5);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.sectionHeadingCentered {
+  font-family: var(--font-family-heading);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .optionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .optionsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Single contact card (one company email) */
+.optionCardSingle {
+  background: #fff;
+  border: 1px solid rgba(0, 82, 204, 0.12);
+  border-radius: 16px;
+  padding: var(--space-6);
+  max-width: 520px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(9, 30, 66, 0.08);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.optionCardSingle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(9, 30, 66, 0.1);
+}
+
+.optionCard {
+  background: #fff;
+  border: 1px solid var(--color-border-default);
+  border-radius: 16px;
+  padding: var(--space-5);
+  box-shadow: 0 2px 12px rgba(9, 30, 66, 0.06);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.optionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(9, 30, 66, 0.1);
+}
+
+.optionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--color-secondary-light);
+  color: var(--color-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.optionTitle {
+  font-family: var(--font-family-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+  line-height: 1.3;
+}
+
+.optionDesc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
+}
+
+.optionBtn {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.optionBtn:hover {
+  color: var(--color-secondary-hover);
+}
+
+/* Message section: scroll target for "Get In Touch Via Email" button */
+#contact-message {
+  scroll-margin-top: 80px;
+}
+
+/* ── Section 3: Contact Form ────────────────────────────────── */
+.sectionAlt {
+  padding: var(--space-7) var(--space-4);
+  background: #fff;
+  box-shadow: 0 1px 0 var(--color-border-default);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.formLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .formLayout {
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+}
+
+.formIntroText {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.formIntro .sectionHeading {
+  text-align: left;
+  margin-bottom: var(--space-3);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--color-text-primary);
+  background: #fff;
+  border: 1px solid var(--color-border-default);
+  border-radius: 10px;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.formInput:focus,
+.formSelect:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.formSelect {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B778C' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+.formTextarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.formStatusSuccess {
+  font-size: 15px;
+  color: #0d8050;
+  margin: 0 0 var(--space-3);
+  font-weight: 500;
+}
+
+.formStatusError {
+  font-size: 14px;
+  color: #de350b;
+  margin: 0 0 var(--space-3);
+  font-weight: 500;
+}
+
+.formSubmit {
+  align-self: flex-start;
+  padding: 14px var(--space-5);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #0065FF 100%);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 82, 204, 0.25);
+  transition: transform var(--transition-fast), box-shadow var(--transition-base);
+}
+
+.formSubmit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 82, 204, 0.35);
+}
+
+.formSubmit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ── Section 4: Company Information ────────────────────────── */
+.companyCard {
+  background: #fff;
+  border: 1px solid var(--color-border-default);
+  border-radius: 16px;
+  padding: var(--space-5);
+  max-width: 640px;
+  margin: 0 auto;
+  box-shadow: 0 2px 12px rgba(9, 30, 66, 0.06);
+}
+
+.companyRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.companyRow:last-child {
+  border-bottom: none;
+}
+
+.companyIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--color-secondary-light);
+  color: var(--color-secondary);
+}
+
+.companyRow strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+.companyRow p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.companyEmailLink {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.companyEmailLink:hover {
+  text-decoration: underline;
+  color: var(--color-secondary-hover);
+}
+
+/* ── Section 5: Enterprise CTA ──────────────────────────────── */
+.enterpriseLead {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-5);
+  text-align: center;
+}
+
+.enterpriseCTAs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/* ── Section 6: Social Links ────────────────────────────────── */
+.socialWrap {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-secondary);
+  box-shadow: 0 2px 8px rgba(9, 30, 66, 0.06);
+  transition: color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-fast);
+}
+
+.socialBtn:hover {
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 4px rgba(0, 82, 204, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ── Section 7: Final Trust (no stripe) ─────────────────────── */
+.trustSection {
+  padding: var(--space-6) var(--space-4);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.trustText {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.trustText strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .hero {
+    padding: 28px var(--space-3) var(--space-5);
+  }
+
+  .section,
+  .sectionAlt {
+    padding: var(--space-5) var(--space-3);
+  }
+
+  .heroCTAs {
+    flex-direction: column;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+  }
+
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .enterpriseCTAs {
+    flex-direction: column;
+  }
+
+  .enterpriseCTAs .btnPrimary,
+  .enterpriseCTAs .btnSecondary {
+    width: 100%;
+  }
+}

@@ -1,0 +1,856 @@
+/**
+ * Vision & Mission — Premium, light theme, enterprise-grade.
+ * Full-viewport horizontal stripes; vertical stripes via pageStrip.
+ * Content from company_info.md. Subtle motion only.
+ */
+
+.page {
+  background: #FAFBFC;
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+.pageStrip {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-left: 1px solid var(--color-border-default);
+  border-right: 1px solid var(--color-border-default);
+  min-height: 0;
+}
+
+.sectionStripe {
+  position: relative;
+}
+
+.sectionStripe::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  height: 1px;
+  background: var(--color-border-default);
+  pointer-events: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* ── InView transitions ─────────────────────────────────────── */
+.hero.inView,
+.section.inView,
+.sectionAlt.inView,
+.visionSection.inView,
+.missionSection.inView,
+.strategySection.inView,
+.principlesSection.inView,
+.commitmentSection.inView,
+.ctaSection.inView {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section.inView .missionCard,
+.sectionAlt.inView .principleCard {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Section 1: Hero ───────────────────────────────────────── */
+.hero {
+  position: relative;
+  padding: 40px var(--space-4) var(--space-7);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F0F7FF 40%, #E8F0FE 100%);
+  pointer-events: none;
+}
+
+.heroBgNodes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.heroNode {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 82, 204, 0.15);
+  animation: heroNodeFloat 12s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.8s);
+  top: calc(15% + (var(--i) * 6.5%));
+  left: calc(8% + (var(--i) * 8%));
+}
+
+@keyframes heroNodeFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50% { transform: translate(8px, -12px) scale(1.2); opacity: 1; }
+}
+
+.heroBgWaves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  opacity: 0.4;
+}
+
+.heroBgWaves span {
+  width: 1px;
+  height: 40%;
+  background: linear-gradient(180deg, transparent, rgba(0, 82, 204, 0.12));
+  border-radius: 2px;
+  animation: heroWave 4s ease-in-out infinite;
+}
+
+.heroBgWaves span:nth-child(2) { animation-delay: 0.5s; height: 60%; }
+.heroBgWaves span:nth-child(3) { animation-delay: 1s; height: 50%; }
+
+@keyframes heroWave {
+  0%, 100% { transform: scaleY(0.8); }
+  50% { transform: scaleY(1); }
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heroLabel {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.heroTitle {
+  font-family: var(--font-family-heading);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.heroSub {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-6);
+}
+
+.heroScrollIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 48px;
+  border: 2px solid var(--color-border-default);
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+.heroScrollDot {
+  width: 6px;
+  height: 10px;
+  background: var(--color-secondary);
+  border-radius: 3px;
+  animation: heroScrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes heroScrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* ── Section 2: Vision ─────────────────────────────────────── */
+.visionSection {
+  position: relative;
+  padding: var(--space-7) var(--space-4);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.visionBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #E8F0FE 0%, #F0F7FF 50%, #FFFFFF 100%);
+  pointer-events: none;
+}
+
+.visionSection .container {
+  position: relative;
+}
+
+.visionLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .visionLayout {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-7);
+  }
+}
+
+.sectionHeading {
+  font-family: var(--font-family-heading);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-5);
+  letter-spacing: -0.02em;
+}
+
+.sectionHeadingCentered {
+  font-family: var(--font-family-heading);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-5);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.visionContent p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
+}
+
+.visionContent p:last-child {
+  margin-bottom: 0;
+}
+
+.visionVizCard {
+  position: relative;
+  background: linear-gradient(165deg, #F8FAFC 0%, #F0F4FF 100%);
+  border: 1px solid rgba(0, 82, 204, 0.12);
+  border-radius: 20px;
+  padding: var(--space-5);
+  min-height: 280px;
+  box-shadow: 0 8px 32px rgba(9, 30, 66, 0.08), 0 2px 8px rgba(0, 82, 204, 0.04);
+  overflow: hidden;
+}
+
+.visionVizCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-secondary), #0065FF);
+  border-radius: 20px 0 0 20px;
+}
+
+.visionVizCardHeader {
+  margin-bottom: var(--space-4);
+}
+
+.visionVizCardLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.visionVizNodes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.visionVizCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--space-3);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 82, 204, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(9, 30, 66, 0.04);
+  animation: visionNodePulse 5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.25s);
+}
+
+.visionVizIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(0, 82, 204, 0.08);
+  color: var(--color-secondary);
+}
+
+.visionVizCellLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+@keyframes visionNodePulse {
+  0%, 100% { opacity: 0.92; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); box-shadow: 0 4px 12px rgba(0, 82, 204, 0.08); }
+}
+
+.visionVizFooter {
+  padding-top: var(--space-2);
+  border-top: 1px solid rgba(0, 82, 204, 0.08);
+}
+
+.visionVizBar {
+  height: 6px;
+  background: rgba(0, 82, 204, 0.12);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.visionVizBarFill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-secondary), #0065FF);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.visionVizBarLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ── Section 3: Mission (always visible so section is never missing) ── */
+.missionSection {
+  padding: var(--space-7) var(--space-4);
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.missionBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F5FAFF 50%, #FAFBFC 100%);
+  pointer-events: none;
+}
+
+.missionSection .container {
+  position: relative;
+  z-index: 1;
+}
+
+.missionHeader {
+  display: block;
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.missionHeader .sectionHeadingCentered {
+  margin-bottom: var(--space-4);
+}
+
+.missionLead {
+  display: block;
+  visibility: visible;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  max-width: 720px;
+  margin: 0 auto var(--space-6);
+  text-align: center;
+}
+
+.missionCards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .missionCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.missionCard {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--color-border-default);
+  border-radius: 16px;
+  padding: var(--space-5);
+  box-shadow: 0 4px 20px rgba(9, 30, 66, 0.06);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.missionCardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--color-secondary-light);
+  color: var(--color-secondary);
+  margin-bottom: var(--space-4);
+  box-shadow: 0 0 0 0 rgba(0, 82, 204, 0.2);
+  animation: missionIconGlow 4s ease-in-out infinite;
+}
+
+@keyframes missionIconGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 82, 204, 0.2); }
+  50% { box-shadow: 0 0 24px 4px rgba(0, 82, 204, 0.12); }
+}
+
+.missionCardTitle {
+  font-family: var(--font-family-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+  line-height: 1.3;
+}
+
+.missionCardBody {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ── Section 4: Strategic Direction (premium, flow in one line) ── */
+.strategySection {
+  padding: var(--space-7) var(--space-4);
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.strategyBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(165deg, #FAFCFF 0%, #F2F7FF 35%, #EEF4FD 70%, #FFFFFF 100%);
+  pointer-events: none;
+}
+
+.strategySection .container {
+  position: relative;
+  z-index: 1;
+}
+
+.strategyHeader {
+  display: block;
+  margin-bottom: var(--space-6);
+}
+
+.strategyHeader .sectionHeadingCentered {
+  margin-bottom: 0;
+  font-size: clamp(28px, 3vw, 36px);
+  letter-spacing: -0.03em;
+}
+
+.strategyLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .strategyLayout {
+    grid-template-columns: 1.15fr 1fr;
+    gap: var(--space-7);
+    align-items: center;
+  }
+}
+
+.strategyContent {
+  min-width: 0;
+}
+
+.strategyLead {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  margin: 0 0 var(--space-4);
+  letter-spacing: -0.01em;
+}
+
+.strategyContent p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
+}
+
+.strategyContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* Right: single-line flow card (premium) */
+.strategyViz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.strategyVizCard {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(165deg, #F4F8FF 0%, #EEF4FC 50%, #E6EFF9 100%);
+  border: 1px solid rgba(0, 82, 204, 0.12);
+  border-radius: 20px;
+  padding: var(--space-5) var(--space-5);
+  box-shadow: 0 8px 32px rgba(9, 30, 66, 0.08), 0 2px 8px rgba(0, 82, 204, 0.06);
+  overflow: hidden;
+}
+
+.strategyVizCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-secondary), #0065FF);
+  border-radius: 20px 0 0 20px;
+}
+
+.strategyVizFlow {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-width: 0;
+}
+
+.strategyVizStep {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 82, 204, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(9, 30, 66, 0.04);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition-delay: calc(var(--order) * 0.12s);
+}
+
+.strategyVizArrow {
+  flex-shrink: 0;
+  width: 16px;
+  height: 2px;
+  margin: 0 4px;
+  background: linear-gradient(90deg, var(--color-secondary), rgba(0, 82, 204, 0.5));
+  border-radius: 1px;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .strategyVizFlow {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .strategyVizStep {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .strategyVizArrow {
+    width: 12px;
+    margin: 0 2px;
+  }
+}
+
+@media (max-width: 600px) {
+  .strategyVizCard {
+    max-width: 100%;
+  }
+}
+
+/* ── Section 5: Foundational Principles ────────────────────── */
+.principlesSection {
+  padding: var(--space-7) var(--space-4);
+  background: #fff;
+  box-shadow: 0 1px 0 var(--color-border-default);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .principlesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.principleCard {
+  background: #FAFBFC;
+  border: 1px solid var(--color-border-default);
+  border-radius: 16px;
+  padding: var(--space-5);
+  box-shadow: 0 2px 12px rgba(9, 30, 66, 0.04);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.principleIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--color-secondary-light);
+  color: var(--color-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.principleTitle {
+  font-family: var(--font-family-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+  line-height: 1.3;
+}
+
+.principleBody {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ── Section 6: Long-Term Commitment (always visible) ───────── */
+.commitmentSection {
+  position: relative;
+  padding: var(--space-7) var(--space-4);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.commitmentBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F0F7FF 50%, #E8F0FE 100%);
+  pointer-events: none;
+}
+
+.commitmentBgGlow {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  max-width: 400px;
+  height: 120px;
+  background: radial-gradient(ellipse at center, rgba(0, 82, 204, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.commitmentSection .container {
+  position: relative;
+  z-index: 1;
+}
+
+.commitmentHeader {
+  display: block;
+  margin-bottom: var(--space-5);
+}
+
+.commitmentHeader .sectionHeadingCentered {
+  margin-bottom: 0;
+}
+
+.commitmentLead {
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--color-text-primary);
+  max-width: 720px;
+  margin: 0 auto var(--space-4);
+  text-align: center;
+  font-weight: 500;
+}
+
+.commitmentBody {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ── Section 7: CTA (no stripe) ──────────────────────────────── */
+.ctaSection {
+  padding: var(--space-7) var(--space-4);
+  background: linear-gradient(180deg, #F4F5F7 0%, #FAFBFC 100%);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.ctaHeading {
+  font-family: var(--font-family-heading);
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.ctaSub {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  max-width: 520px;
+  margin: 0 auto var(--space-5);
+  text-align: center;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.ctaBtnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px var(--space-5);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  background: var(--color-secondary);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: background var(--transition-base), transform var(--transition-fast);
+  box-shadow: var(--shadow-card);
+}
+
+.ctaBtnPrimary:hover {
+  background: var(--color-secondary-hover);
+  transform: translateY(-1px);
+}
+
+.ctaBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px var(--space-5);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-secondary);
+  background: #fff;
+  border: 2px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+.ctaBtnSecondary:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-secondary-light);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 60vh;
+    padding: 28px var(--space-3) var(--space-5);
+  }
+
+  .visionSection,
+  .missionSection,
+  .strategySection,
+  .principlesSection,
+  .commitmentSection {
+    padding: var(--space-5) var(--space-3);
+  }
+
+  .missionCards {
+    grid-template-columns: 1fr;
+  }
+
+  .principlesGrid {
+    grid-template-columns: 1fr;
+  }
+}

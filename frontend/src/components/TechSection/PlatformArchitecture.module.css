@@ -1,0 +1,501 @@
+/* ── Platform Architecture Section ────────────────────────── */
+.platformSection {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    background: transparent;
+    overflow-x: clip;
+    overflow-y: visible;
+    /* Clip horizontal ribbon overflow, allow vertical */
+    z-index: 50;
+    /* Above whySection (10), below navbar (100) */
+    isolation: isolate;
+    /* Ensures ::before z-index:-1 gradient stays visible on all devices */
+    will-change: transform;
+    /* GPU-accelerated smooth movement */
+}
+
+/* Gradient background — single piece that covers from ribbon area to bottom.
+   Uses a diagonal top edge via clip-path to match the ribbon angle,
+   so there's no separate triangle — it's all one seamless shape. */
+.platformSection::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            #10B981 0%,
+            #14B8A6 25%,
+            #06B6D4 50%,
+            #3B82F6 75%,
+            #6366F1 100%);
+    /* Diagonal top edge: left side starts lower, right side starts higher — matches ribbon angle */
+    clip-path: polygon(0% 160px, 100% 0%, 100% 100%, 0% 100%);
+    z-index: -1;
+}
+
+/* ── Ribbon Container ────────────────────────────────────── */
+.ribbonContainer {
+    position: absolute;
+    top: -60px;
+    /* Shifted down — slight overlap with WhySection */
+    left: -15vw;
+    /* Extend beyond left viewport edge */
+    width: 130vw;
+    /* Full viewport + overflow on both sides */
+    overflow: visible;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* White opaque fill between the two ribbons */
+.ribbonGap {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 120px;
+    /* Bottom edge of ribbon 1 (height 120px) */
+    height: 40px;
+    /* Same as gap between ribbons */
+    background: white;
+    transform: rotate(-6deg);
+    /* Match ribbon angle */
+    transform-origin: center center;
+    z-index: 48;
+    /* Behind both ribbons */
+}
+
+/* ── Individual Ribbons ──────────────────────────────────── */
+.ribbon1,
+.ribbon2 {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    /* Fill full container width (130vw) */
+    height: 120px;
+    /* Thicker ribbons */
+    overflow: hidden;
+    transform-origin: center center;
+    opacity: 1 !important;
+    /* Force fully opaque */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    /* Gentle curve — subtle arc, NOT wavy/twisted edges */
+    border-radius: 50% / 12px;
+}
+
+.ribbon1 {
+    top: 0;
+    transform: rotate(-6deg);
+    /* Gentle diagonal from right to left */
+    z-index: 50;
+    /* Purple to Orange gradient - fully solid */
+    background: linear-gradient(90deg,
+            #8B5CF6 0%,
+            #A855F7 20%,
+            #C084FC 40%,
+            #E879F9 60%,
+            #F0ABFC 80%,
+            #FB923C 100%);
+}
+
+.ribbon2 {
+    top: 160px;
+    /* 120px R1 height + 40px gap */
+    transform: rotate(-6deg);
+    /* Same angle as R1 */
+    z-index: 49;
+    /* Green to Indigo gradient - fully solid */
+    background: linear-gradient(90deg,
+            #10B981 0%,
+            #14B8A6 25%,
+            #06B6D4 50%,
+            #3B82F6 75%,
+            #6366F1 100%);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ── Ribbon Tracks: 2 copies = seamless loop, no gap ─────── */
+.ribbonTrack1,
+.ribbonTrack2 {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 200%;
+    /* 2 copies so when one scrolls out, the other is in place */
+    pointer-events: auto;
+    will-change: transform;
+}
+
+.ribbonTrack1 {
+    animation: marqueeRightToLeft 45s linear infinite;
+}
+
+.ribbonTrack2 {
+    animation: marqueeLeftToRight 42s linear infinite;
+}
+
+.ribbonContentSet {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    /* One set = 100% viewport; equal spacing between items */
+    flex-shrink: 0;
+    padding: 0 48px;
+    box-sizing: border-box;
+}
+
+/* ── Ribbon Content Items (equal spacing, no overlap) ───── */
+.ribbonItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ── Icon ────────────────────────────────────────────────── */
+.ribbonIcon {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ribbonIcon svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.15));
+}
+
+/* ── Separator Dot ──────────────────────────────────────── */
+.ribbonSeparator {
+    color: white;
+    opacity: 0.7;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 4px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+/* ── Text ────────────────────────────────────────────────── */
+.ribbonText {
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+    line-height: 1;
+}
+
+/* ── Platform Content ────────────────────────────────────── */
+.platformContent {
+    position: relative;
+    z-index: 1;
+    min-height: 200px;
+}
+
+/* ── Responsive Design ───────────────────────────────────── */
+
+/* Desktop only: remove 200px from bottom of section */
+@media (min-width: 1025px) {
+    .platformSection {
+        margin-bottom: -200px;
+    }
+}
+
+/* Smaller-desktop styles (1025px - 1200px) — still curved ribbons */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .platformSection::before {
+        top: 170px;
+    }
+
+    .ribbon1,
+    .ribbon2 {
+        height: 100px;
+    }
+
+    .ribbon1 {
+        transform: rotate(-5deg);
+    }
+
+    .ribbon2 {
+        transform: rotate(-5deg);
+        top: 140px;
+    }
+
+    .ribbonItem {
+        margin-right: 50px;
+    }
+
+    .ribbonText {
+        font-size: 16px;
+    }
+
+    .ribbonIcon svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE + TABLET (≤ 1024px)
+   Completely flat horizontal ribbons in normal document flow.
+   No positioning, no transforms, no z-index, no overlapping.
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+
+    /* Section: normal flow; 150px less height from bottom (tablet only) */
+    .platformSection {
+        position: relative;
+        min-height: 1050px;
+        z-index: auto;
+        will-change: auto;
+        transform: none !important;
+        overflow: hidden;
+    }
+
+    /* Full-width horizontal gradient below ribbons (no diagonal) */
+    .platformSection::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        bottom: 0;
+        clip-path: none;
+    }
+
+    /* Ribbon container: normal flow, full viewport width */
+    .ribbonContainer {
+        position: static;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        overflow: hidden;
+        z-index: auto;
+        pointer-events: none;
+    }
+
+    /* Both ribbons: static, horizontal, reduced height & content size */
+    .ribbon1,
+    .ribbon2 {
+        position: static;
+        width: 100%;
+        height: 56px;
+        transform: none;
+        border-radius: 0;
+        border-top: 2px solid rgba(255, 255, 255, 0.15);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Remove the white gap between ribbons */
+    .ribbonGap {
+        display: none;
+    }
+
+    /* Platform content: 150px less bottom space on tablet */
+    .platformContent {
+        position: relative;
+        z-index: 1;
+        min-height: auto;
+        padding-bottom: 0;
+    }
+
+    /* Tablet: single copy only — one line in a loop (like mobile), no second repetition */
+    .ribbonContentSetDuplicate {
+        display: none !important;
+    }
+
+    .ribbonTrack1,
+    .ribbonTrack2 {
+        width: 100%;
+    }
+
+    .ribbonTrack1 {
+        animation: marqueeSingleRightToLeft 35s linear infinite;
+    }
+
+    .ribbonTrack2 {
+        animation: marqueeSingleLeftToRight 33s linear infinite;
+    }
+
+    .ribbonContentSet {
+        width: 200%;
+        padding: 0 36px;
+    }
+
+    .ribbonItem {
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .ribbonText {
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .ribbonIcon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .ribbonIcon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .ribbonSeparator {
+        font-size: 14px;
+        margin: 0 2px;
+    }
+}
+
+/* Mobile: each set = 200% viewport so full ribbon text is visible as it scrolls */
+@media (max-width: 767px) {
+
+    .platformSection {
+        padding-bottom: 150px;
+    }
+
+    .ribbon1,
+    .ribbon2 {
+        height: 52px;
+        border-top-width: 2px;
+        border-bottom-width: 2px;
+        overflow: hidden;
+    }
+
+    /* Mobile: single line only — same as tablet, one set scrolls in a loop */
+    .ribbonContentSetDuplicate {
+        display: none !important;
+    }
+
+    .ribbonTrack1,
+    .ribbonTrack2 {
+        width: 100%;
+    }
+
+    .ribbonTrack1 {
+        animation: marqueeSingleRightToLeft 45s linear infinite;
+    }
+
+    .ribbonTrack2 {
+        animation: marqueeSingleLeftToRight 42s linear infinite;
+    }
+
+    .ribbonContentSet {
+        width: 200%;
+        padding: 0 28px;
+    }
+
+    .ribbonTrack1 {
+        animation: marqueeRightToLeft 55s linear infinite;
+    }
+
+    .ribbonTrack2 {
+        animation: marqueeLeftToRight 52s linear infinite;
+    }
+
+    .ribbonItem {
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    .ribbonText {
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .ribbonIcon svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .ribbonIcon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .ribbonSeparator {
+        font-size: 12px;
+        margin: 0 2px;
+    }
+}
+
+/* ── Animation Keyframes ─────────────────────────────────── */
+@keyframes marqueeRightToLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes marqueeLeftToRight {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Single-line scroll (mobile/tablet): content moves in and out in a loop */
+@keyframes marqueeSingleRightToLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+}
+
+@keyframes marqueeSingleLeftToRight {
+    0% {
+        transform: translateX(-200%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* ── Accessibility & Performance ────────────────────────── */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .ribbonTrack1,
+    .ribbonTrack2 {
+        animation-duration: 120s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 1024px) {
+
+    .ribbonTrack1,
+    .ribbonTrack2 {
+        animation-duration: 90s;
+    }
+}
+
+/* Performance optimizations */
+.ribbonContainer,
+.ribbon1,
+.ribbon2,
+.ribbonTrack1,
+.ribbonTrack2 {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}

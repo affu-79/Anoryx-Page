@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+.stripeSection {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+  z-index: 50;
+  /* Scrolls over sticky WhySection */
+}
+
+/* Vertical decorative lines (Stripe-style) */
+.stripeSection::before,
+.stripeSection::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.07);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.stripeSection::before {
+  left: 170px;
+}
+
+.stripeSection::after {
+  right: 170px;
+}
+
+.dark.stripeSection::before,
+.dark.stripeSection::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.statsRow {
+  display: flex;
+  justify-content: center;
+  padding: 44px 60px 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  background: #fff;
+  transition: background 0.7s, border-color 0.7s;
+}
+
+.dark .statsRow {
+  background: #1a1f6e;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.statItem {
+  flex: 1;
+  max-width: 260px;
+  text-align: center;
+  padding: 0 20px;
+  border-right: 1px solid rgba(0, 0, 0, 0.07);
+  transition: border-color 0.7s;
+}
+
+.dark .statItem {
+  border-right-color: rgba(255, 255, 255, 0.1);
+}
+
+.statItem:last-child {
+  border-right: none;
+}
+
+.statNumber {
+  font-family: var(--font-family-heading);
+  font-size: 2.35rem;
+  font-weight: 400;
+  color: #1a1a2e;
+  letter-spacing: -0.02em;
+  transition: color 0.7s;
+}
+
+.dark .statNumber {
+  color: #fff;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 5px;
+  line-height: 1.45;
+  white-space: pre-line;
+  transition: color 0.7s;
+}
+
+.dark .statLabel {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.animationWrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.canvasBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.controls {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+
+.ctrlBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.ctrlBtn:hover {
+  background: #fff;
+}
+
+.dark .ctrlBtn {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dark .ctrlBtn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.ctrlBtn svg {
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+}
+
+.sectionText {
+  padding: 36px 60px 52px 190px;
+  background: #fff;
+  transition: background 0.7s;
+}
+
+.dark .sectionText {
+  background: #1a1f6e;
+}
+
+.sectionTitle {
+  font-family: var(--font-family-heading);
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: #1a1a2e;
+  line-height: 1.45;
+  max-width: 700px;
+  transition: color 0.7s;
+  margin: 0;
+}
+
+.dark .sectionTitle {
+  color: #fff;
+}
+
+.sectionTitle .highlight {
+  color: #635bff;
+}
+
+/* ── Tablet + Mobile ─────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  /* Normal flow — no positioning or z-index layering */
+  .stripeSection {
+    position: static;
+    z-index: auto;
+  }
+
+  .stripeSection::before {
+    left: 80px;
+  }
+
+  .stripeSection::after {
+    right: 80px;
+  }
+
+  .statsRow {
+    padding: 36px 40px 28px;
+  }
+
+  .sectionText {
+    padding: 32px 40px 44px 100px;
+  }
+
+  .animationWrapper {
+    height: 420px;
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .stripeSection::before {
+    left: 60px;
+  }
+
+  .stripeSection::after {
+    right: 60px;
+  }
+
+  /* Mobile: 4 divs in 2x2 grid — vertical divider centered */
+  .statsRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 16px 16px 16px;
+    gap: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .statItem {
+    flex: none;
+    max-width: none;
+    min-width: 0;
+    width: 100%;
+    padding: 16px 10px;
+    border-right: 1px solid rgba(0, 0, 0, 0.07);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    box-sizing: border-box;
+  }
+
+  .dark .statItem {
+    border-right-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .statItem:nth-child(2n) {
+    border-right: none;
+  }
+
+  .statItem:nth-child(3),
+  .statItem:nth-child(4) {
+    border-bottom: none;
+  }
+
+  .statNumber {
+    font-size: 1.55rem;
+  }
+
+  .statLabel {
+    font-size: 0.65rem;
+  }
+
+  .animationWrapper {
+    height: 340px;
+  }
+
+  .controls {
+    top: 10px;
+    right: 10px;
+  }
+
+  .ctrlBtn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .ctrlBtn svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .sectionText {
+    padding: 24px 16px 40px;
+  }
+
+  .sectionTitle {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+}
+
+/* ── Small Phone ─────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+
+  /* Hide section-level vertical lines — they span animation + text too */
+  .stripeSection::before,
+  .stripeSection::after {
+    display: none;
+  }
+
+  /* Keep 2x2 grid on small phones — vertical divider at center (50%) */
+  .statsRow {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 16px 16px 16px;
+    gap: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: none;
+    box-sizing: border-box;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  }
+
+  .dark .statsRow {
+    background: #1a1f6e;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* No pseudo-element lines — grid borders give centered vertical divider at 50% */
+  .statsRow::before,
+  .statsRow::after {
+    display: none;
+  }
+
+  /* 2x2 grid — same as 768px, vertical divider from grid at center */
+  .statItem {
+    padding: 12px 10px;
+    border-right: 1px solid rgba(0, 0, 0, 0.07);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .dark .statItem {
+    border-right-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .statItem:nth-child(2n) {
+    border-right: none;
+  }
+
+  .statItem:nth-child(3),
+  .statItem:nth-child(4) {
+    border-bottom: none;
+  }
+
+  .statNumber {
+    font-size: 1.5rem;
+  }
+
+  .statLabel {
+    font-size: 0.7rem;
+    margin-top: 3px;
+  }
+
+  /* Scale animation down further */
+  .animationWrapper {
+    height: 120px;
+  }
+
+  .controls {
+    top: 8px;
+    right: 8px;
+    gap: 3px;
+  }
+
+  .ctrlBtn {
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+  }
+
+  .ctrlBtn svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .sectionText {
+    padding: 20px 12px 32px;
+  }
+
+  .sectionTitle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}

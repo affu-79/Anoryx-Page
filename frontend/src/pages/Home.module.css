@@ -1,0 +1,2119 @@
+/* Home Page */
+
+/* Blue band — sits between navbar and hero */
+.paleBand {
+    width: 100%;
+    height: 50px;
+    background-color: #bbd1ea90;
+}
+
+/* Sticky scene — WhySection sticks, ribbons + below scroll over it */
+.stickyScene {
+    position: relative;
+}
+
+/* Invisible spacer — gives WhySection extra scroll-lengths of sticky time */
+.scrollSpacer {
+    height: 120vh;
+    /* More scroll distance before ribbons appear */
+    pointer-events: none;
+}
+
+/* ── Mobile + Tablet: flatten stickyScene to normal flow ── */
+@media (max-width: 1024px) {
+    .stickyScene {
+        position: static;
+    }
+
+    .scrollSpacer {
+        display: none;
+        height: 0;
+    }
+}
+
+/* Hero wrapper — full viewport below the navbar, hero_bg as background */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - var(--navbar-height));
+    background-image: url('../assets/hero_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Black section — sits below a gap that reveals the hero_bg image */
+.blackSection {
+    width: 100%;
+    flex: 1;
+    margin-top: 30px;
+    min-height: auto;
+    background-color: #000000;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: var(--space-6);
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    padding-bottom: var(--space-7);
+}
+
+/* Content container inside the black section */
+.blackSectionContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-7);
+    padding: 0 var(--space-4);
+    margin-bottom: var(--space-7);
+}
+
+/* ── Hero Left (Headline) ──────────────────────────────────── */
+
+.heroLeft {
+    flex: 1;
+    min-width: 0;
+}
+
+.heroHeadline {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-4);
+    gap: 0;
+}
+
+.heroSmall {
+    font-family: var(--font-family-heading);
+    font-size: 52px;
+    line-height: 58px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: -0.5px;
+}
+
+.heroAccent {
+    font-family: var(--font-family-heading);
+    font-size: 85px;
+    line-height: 100px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: transparent;
+    background-image: url('../assets/hero_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-attachment: fixed;
+}
+
+.heroSlogan {
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 520px;
+    margin-top: var(--space-4);
+    font-weight: 400;
+}
+
+/* ── Hero Right (Sign up form) ────────────────────────────── */
+
+.heroRight {
+    flex: 0 0 380px;
+    min-width: 0;
+}
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.emailLabel {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.3px;
+}
+
+.emailInputPill {
+    width: 100%;
+    height: 44px;
+    padding: 0 20px;
+    border: 2px solid transparent;
+    border-radius: 32px;
+    font-family: var(--font-family);
+    font-size: 15px;
+    color: #ffffff;
+    outline: none;
+    transition: box-shadow var(--transition-fast);
+    background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+        linear-gradient(90deg, #FFD54F, #0052CC, #36B37E, #FF6B6B) border-box;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+}
+
+.emailInputPill:focus {
+    box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
+}
+
+.emailInputPill::placeholder {
+    color: #626F86;
+}
+
+.emailInputHighlight {
+    border-color: #FFD54F;
+    box-shadow: 0 0 0 2px rgba(255, 213, 79, 0.3);
+}
+
+.signupPromptMessage {
+    font-size: 13px;
+    color: #FFD54F;
+    margin: 0 0 4px 0;
+}
+
+.signupDescription {
+    font-size: 13px;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 4px 0 0 0;
+}
+
+.signupButtonPill {
+    width: 100%;
+    height: 44px;
+    background-color: var(--color-secondary);
+    color: #FFFFFF;
+    font-family: var(--font-family);
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 32px;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.signupButtonPill:hover {
+    background-color: #0065FF;
+}
+
+.signupButtonPill:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+/* Same size and pill shape as .signupButtonPill */
+.googleButtonContainer {
+    width: 100%;
+    height: 44px;
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.googleButtonContainer > div {
+    width: 100% !important;
+    min-width: 100%;
+}
+
+.googleButtonContainer iframe {
+    border-radius: 32px;
+    max-height: 44px;
+}
+
+/* Modals */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: var(--space-4);
+}
+
+.modalCard {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: var(--space-6);
+    max-width: 420px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modalTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 var(--space-4) 0;
+}
+
+.modalBody {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 var(--space-5) 0;
+    line-height: 1.5;
+}
+
+.modalActions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.modalButtonPrimary {
+    padding: 10px 20px;
+    background: var(--color-secondary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.modalButtonPrimary:hover {
+    background: #0065FF;
+}
+
+.modalButtonSecondary {
+    padding: 10px 20px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.modalButtonSecondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.dividerWithText {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+}
+
+.dividerLine {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: block;
+}
+
+.dividerText {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+}
+
+.googleButtonPill {
+    width: 100%;
+    height: 44px;
+    background-color: #FFFFFF;
+    color: #091E42;
+    font-family: var(--font-family);
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: background-color var(--transition-fast);
+}
+
+.googleButtonPill:hover {
+    background-color: #F7F8F9;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+/* Signup CTA wrapper — pass-through on desktop, styled on tablet */
+.signupWrapper {
+    display: block;
+}
+
+/* Tablet override needs !important to beat base styles defined later in file */
+
+@media (max-width: 1024px) {
+    .blackSection {
+        margin-top: 40px;
+        min-height: auto;
+        padding: var(--space-6) var(--space-4);
+        padding-bottom: var(--space-7);
+    }
+
+    .blackSectionContent {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-6);
+        margin-bottom: var(--space-6);
+    }
+
+    .heroLeft {
+        text-align: center;
+    }
+
+    .heroSlogan {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .heroRight {
+        flex: 1;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .signupWrapper {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 32px;
+        background: transparent;
+    }
+
+    .heroAccent {
+        font-size: 64px;
+        line-height: 72px;
+    }
+
+    .heroSmall {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .featureCardsGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 14px;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+    }
+
+    .featureCardPreview {
+        min-height: 260px;
+    }
+
+    .featureCardTitle {
+        font-size: 13px;
+    }
+}
+
+/* ── 4 Premium Feature Cards Grid ──────────────────────────────────────── */
+
+.featureCardsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-3);
+    width: 100%;
+}
+
+.featureCard {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #FFFFFF;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.featureCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Feature Card Header */
+.featureCardHeader {
+    padding: 20px 20px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.featureCardTitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.featureCardArrow {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    color: #9ca3af;
+}
+
+.featureCard:hover .featureCardArrow {
+    background: #0052CC;
+    color: #ffffff;
+    transform: translate(2px, -2px);
+}
+
+.featureCardArrow svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Feature Card Preview with Gradients */
+.featureCardPreview {
+    flex: 1;
+    min-height: 320px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.gradientPink {
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f97316 100%);
+}
+
+.gradientPurple {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+}
+
+.gradientTeal {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0d9488 100%);
+}
+
+.gradientOrange {
+    background: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD 1 - Privacy & Security Mockups
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.mockupCard {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+.mockupHeader {
+    padding: 10px 12px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.mockupDots {
+    display: flex;
+    gap: 5px;
+}
+
+.mockupDots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.mockupDots span:nth-child(1) {
+    background: #ff6b6b;
+}
+
+.mockupDots span:nth-child(2) {
+    background: #ffd43b;
+}
+
+.mockupDots span:nth-child(3) {
+    background: #51cf66;
+}
+
+.mockupNav {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.mockupNav span {
+    font-size: 9px;
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.navActive {
+    color: #1f2937 !important;
+    font-weight: 600 !important;
+}
+
+.mockupContent {
+    padding: 12px;
+}
+
+.alertBanner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: linear-gradient(90deg, #fef2f2, #fff5f5);
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.alertSvg {
+    width: 16px;
+    height: 16px;
+    color: #dc2626;
+    flex-shrink: 0;
+}
+
+.alertBanner span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #dc2626;
+}
+
+.riskList {
+    display: flex;
+    flex-direction: column;
+}
+
+.riskRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.riskRow:last-child {
+    border-bottom: none;
+}
+
+.riskHigh {
+    font-size: 8px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: transparent;
+    border: 1.5px solid #dc2626;
+    color: #dc2626;
+    flex-shrink: 0;
+    min-width: 60px;
+    text-align: center;
+}
+
+.riskMed {
+    font-size: 8px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: transparent;
+    border: 1.5px solid #f59e0b;
+    color: #f59e0b;
+    flex-shrink: 0;
+    min-width: 60px;
+    text-align: center;
+}
+
+.riskLow {
+    font-size: 8px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: transparent;
+    border: 1.5px solid #10b981;
+    color: #10b981;
+    flex-shrink: 0;
+    min-width: 60px;
+    text-align: center;
+}
+
+.riskInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.riskTitle {
+    font-size: 11px;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.riskMeta {
+    font-size: 9px;
+    color: #9ca3af;
+}
+
+/* Floating Widget */
+.floatingWidget {
+    position: absolute;
+    bottom: 12px;
+    right: 8px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 3;
+    transform: rotate(-2deg);
+}
+
+.widgetIcon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.widgetContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.widgetLabel {
+    font-size: 9px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.widgetBar {
+    width: 80px;
+    height: 5px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.widgetBar>div {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    border-radius: 3px;
+}
+
+.widgetValue {
+    font-size: 10px;
+    font-weight: 700;
+    color: #10b981;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD 2 - AI & Automation Mockups
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.calendarCard {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.calendarMonth {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.calendarNav {
+    display: flex;
+    gap: 4px;
+}
+
+.calendarNav svg {
+    width: 14px;
+    height: 14px;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.calendarDays {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.calendarDays span {
+    font-size: 8px;
+    font-weight: 600;
+    color: #9ca3af;
+    text-align: center;
+}
+
+.calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.calendarGrid span {
+    font-size: 10px;
+    font-weight: 500;
+    color: #374151;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 6px;
+}
+
+.dayActive {
+    background: #6366f1 !important;
+    color: #ffffff !important;
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid #f1f3f5;
+    padding-top: 10px;
+}
+
+.taskItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: #374151;
+    padding: 6px 8px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.taskColor {
+    width: 4px;
+    height: 16px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+/* Workflow Image Card (Card 2) */
+.workflowImageCard {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.workflowImageHeader {
+    padding: 10px 12px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.workflowTitle {
+    font-size: 10px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.workflowImageWrapper {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #fefce8 0%, #fef9c3 100%);
+}
+
+.workflowImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.workflowImageCard:hover .workflowImage {
+    transform: scale(1.02);
+}
+
+.workflowBadge {
+    margin-left: auto;
+    font-size: 8px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background: #10b981;
+    color: #ffffff;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Card 2 - Calendar Section */
+.calendarSection {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.calendarHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 10px;
+}
+
+.calendarWeekDays {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.calendarWeekDays span {
+    width: 22px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #9ca3af;
+    text-align: center;
+}
+
+.calendarDatesGrid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendarDatesGrid span {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 500;
+    color: #374151;
+    border-radius: 50%;
+}
+
+.calendarDateActive {
+    background: #8b5cf6 !important;
+    color: #ffffff !important;
+}
+
+/* Card 2 - Agent Status Section */
+.agentStatusSection {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.agentStatusRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    color: #374151;
+}
+
+.agentStatusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.agentStatusName {
+    flex: 1;
+    font-weight: 500;
+}
+
+.agentStatusValue {
+    font-size: 9px;
+    font-weight: 600;
+    color: #8b5cf6;
+    background: #f3e8ff;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+/* Agent Panel */
+.agentPanel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.agentRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.agentIcon {
+    width: 32px;
+    height: 32px;
+    background: #f3f4f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.agentIcon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.agentInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.agentName {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.agentMeta {
+    font-size: 9px;
+    color: #9ca3af;
+}
+
+.agentBadge {
+    font-size: 8px;
+    font-weight: 600;
+    padding: 3px 8px;
+    background: #d1fae5;
+    color: #059669;
+    border-radius: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD 3 - Blockchain & Trust Mockups
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.kanbanCard {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.kanbanHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.kanbanItems {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.kanbanItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 10px;
+    color: #374151;
+}
+
+.kanbanDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.kanbanItem span:nth-child(2) {
+    flex: 1;
+}
+
+.kanbanProgress {
+    font-size: 9px;
+    font-weight: 600;
+    color: #f59e0b;
+}
+
+/* Trust Cards */
+.trustCards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.txCard {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.txHeader {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    font-size: 9px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.txHash {
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Monaco', 'Menlo', monospace;
+    color: #1f2937;
+    margin-bottom: 6px;
+}
+
+.txMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    color: #9ca3af;
+}
+
+.txVerified {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #10b981;
+    font-weight: 600;
+}
+
+.identityCard {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.idIcon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.idIcon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.idInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.idTitle {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0891b2;
+}
+
+.idSub {
+    font-size: 9px;
+    color: #6b7280;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD 4 - Platform & Ecosystem Mockups
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.formCard {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.formHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.formFields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formField label {
+    display: block;
+    font-size: 9px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.formSelect {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 10px;
+    color: #1f2937;
+}
+
+.formSelect svg {
+    color: #9ca3af;
+}
+
+.formTags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.formTags span {
+    font-size: 9px;
+    font-weight: 500;
+    padding: 4px 10px;
+    background: #f3f4f6;
+    color: #374151;
+    border-radius: 12px;
+}
+
+/* Match Card */
+.matchCard {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    margin-top: auto;
+}
+
+.matchHeader {
+    font-size: 10px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 12px;
+}
+
+.matchList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.matchRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.matchAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.matchInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.matchName {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.matchRole {
+    font-size: 9px;
+    color: #9ca3af;
+}
+
+.matchScore {
+    font-size: 12px;
+    font-weight: 700;
+    color: #f97316;
+}
+
+/* Legacy styles to remove - keeping for reference */
+.agentStatus {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    font-weight: 600;
+    color: #10b981;
+    margin-bottom: 4px;
+}
+
+.statusDot {
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.agentName {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 2px;
+}
+
+.agentMeta {
+    font-size: 10px;
+    color: #6b7280;
+}
+
+/* Transaction List Styles (Card 3) */
+.txList {
+    padding: 8px 14px 14px;
+}
+
+.txItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.txItem:last-child {
+    border-bottom: none;
+}
+
+.txHash {
+    font-size: 11px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    color: #374151;
+}
+
+.txStatus {
+    font-size: 10px;
+    font-weight: 600;
+    color: #10b981;
+}
+
+.txPending {
+    font-size: 10px;
+    font-weight: 600;
+    color: #f59e0b;
+}
+
+.identityBadge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.badgeIcon {
+    font-size: 24px;
+}
+
+.badgeTitle {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0891b2;
+}
+
+.badgeSub {
+    font-size: 10px;
+    color: #6b7280;
+}
+
+/* Profile Card Styles (Card 4) */
+.profileCard {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.profileAvatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.profileName {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.profileRole {
+    font-size: 11px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.profileSkills {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.skillTag {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 8px;
+    background: #f3f4f6;
+    color: #4b5563;
+    border-radius: 4px;
+}
+
+/* Analytics Card */
+.analyticsCard {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    margin-top: auto;
+}
+
+.analyticsHeader {
+    font-size: 10px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 10px;
+}
+
+.chartBars {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 50px;
+    margin-bottom: 8px;
+}
+
+.chartBar {
+    flex: 1;
+    background: linear-gradient(180deg, #f97316, #fb923c);
+    border-radius: 3px 3px 0 0;
+    min-height: 8px;
+}
+
+.analyticsValue {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f97316;
+}
+
+@media (max-width: 768px) {
+    .paleBand {
+        height: 36px;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .blackSection {
+        margin-top: 20px;
+        min-height: auto;
+        padding: var(--space-5) var(--space-3);
+    }
+
+    .blackSectionContent {
+        flex-direction: column;
+        gap: var(--space-5);
+        padding: 0;
+        margin-bottom: var(--space-5);
+    }
+
+    .heroLeft {
+        text-align: center;
+    }
+
+    .heroHeadline {
+        margin-bottom: var(--space-3);
+    }
+
+    .heroSlogan {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .heroAccent {
+        font-size: 44px;
+        line-height: 52px;
+    }
+
+    .heroSmall {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .signupWrapper {
+        width: 100%;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+    }
+
+    .heroRight {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .signupForm {
+        gap: 12px;
+    }
+
+    .emailLabel {
+        font-size: 12px;
+    }
+
+    .emailInputPill {
+        height: 42px;
+        font-size: 14px;
+    }
+
+    .signupDescription {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .signupButtonPill {
+        height: 42px;
+        font-size: 14px;
+    }
+
+    .dividerText {
+        font-size: 12px;
+    }
+
+    .googleButtonContainer {
+        height: 42px;
+    }
+
+    .googleButtonPill {
+        height: 42px;
+        font-size: 14px;
+    }
+
+    .featureCardsGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px;
+        padding: 0 var(--space-2);
+        margin: 24px auto 0;
+    }
+
+    .featureCardHeader {
+        padding: 12px 12px 10px;
+    }
+
+    .featureCardTitle {
+        font-size: 11px;
+        line-height: 1.35;
+    }
+
+    .featureCardArrow {
+        width: 26px;
+        height: 26px;
+    }
+
+    .featureCardArrow svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    .featureCardPreview {
+        min-height: 220px;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .featureCard {
+        border-radius: 12px;
+    }
+
+    .featureCard:hover {
+        transform: translateY(-4px);
+    }
+
+    .floatingWidget {
+        right: 4px;
+        bottom: 6px;
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .widgetIcon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .widgetBar {
+        width: 60px;
+    }
+
+    .widgetLabel {
+        font-size: 7px;
+    }
+
+    .widgetValue {
+        font-size: 8px;
+    }
+
+    .mockupCard {
+        border-radius: 8px;
+    }
+
+    .mockupHeader {
+        padding: 6px 8px;
+        gap: 8px;
+    }
+
+    .mockupDots span {
+        width: 6px;
+        height: 6px;
+    }
+
+    .mockupContent {
+        padding: 8px;
+    }
+
+    .alertBanner {
+        padding: 6px 8px;
+        gap: 6px;
+        margin-bottom: 6px;
+    }
+
+    .alertSvg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .alertBanner span {
+        font-size: 9px;
+    }
+
+    .riskRow {
+        gap: 6px;
+        padding: 5px 0;
+    }
+
+    .riskHigh,
+    .riskMed,
+    .riskLow {
+        font-size: 6px;
+        padding: 3px 6px;
+        min-width: 46px;
+    }
+
+    .riskTitle {
+        font-size: 9px;
+    }
+
+    .riskMeta {
+        font-size: 7px;
+    }
+
+    .calendarCard,
+    .kanbanCard,
+    .formCard {
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .calendarSection {
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .agentStatusSection {
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .kanbanItem {
+        padding: 6px;
+        font-size: 8px;
+        gap: 5px;
+    }
+
+    .kanbanHeader {
+        font-size: 9px;
+        margin-bottom: 8px;
+    }
+
+    .workflowImageCard {
+        border-radius: 8px;
+    }
+
+    .workflowImageHeader {
+        padding: 6px 8px;
+        gap: 8px;
+    }
+
+    .workflowTitle {
+        font-size: 8px;
+    }
+
+    .trustCards {
+        gap: 6px;
+    }
+
+    .txCard {
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .identityCard {
+        padding: 8px;
+        gap: 8px;
+        border-radius: 8px;
+    }
+
+    .idIcon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .idIcon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .formCard {
+        border-radius: 8px;
+    }
+
+    .formHeader {
+        font-size: 9px;
+        margin-bottom: 8px;
+    }
+
+    .formTags span {
+        font-size: 7px;
+        padding: 3px 7px;
+    }
+
+    .agentPanel,
+    .matchCard {
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .matchAvatar {
+        width: 26px;
+        height: 26px;
+        font-size: 8px;
+    }
+
+    .matchName {
+        font-size: 9px;
+    }
+
+    .matchRole {
+        font-size: 7px;
+    }
+
+    .matchScore {
+        font-size: 10px;
+    }
+
+    .matchHeader {
+        font-size: 8px;
+        margin-bottom: 8px;
+    }
+
+    .matchList {
+        gap: 6px;
+    }
+}
+
+/* ── Small Phone (< 480px) ──────────────────────────────── */
+
+@media (max-width: 480px) {
+    .paleBand {
+        height: 24px;
+    }
+
+    .blackSection {
+        margin-top: 14px;
+        padding: var(--space-4) var(--space-2);
+        padding-bottom: var(--space-5);
+    }
+
+    .blackSectionContent {
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+    }
+
+    .heroAccent {
+        font-size: 34px;
+        line-height: 42px;
+    }
+
+    .heroSmall {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .heroHeadline {
+        margin-bottom: var(--space-2);
+    }
+
+    .heroSlogan {
+        font-size: 13px;
+        line-height: 20px;
+        margin-top: var(--space-2);
+    }
+
+    .signupForm {
+        gap: 10px;
+    }
+
+    .emailLabel {
+        font-size: 11px;
+    }
+
+    .emailInputPill {
+        height: 40px;
+        padding: 0 16px;
+        font-size: 13px;
+    }
+
+    .signupDescription {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .signupButtonPill {
+        height: 40px;
+        font-size: 13px;
+    }
+
+    .dividerWithText {
+        margin: 4px 0;
+        gap: 8px;
+    }
+
+    .dividerText {
+        font-size: 11px;
+    }
+
+    .googleButtonContainer {
+        height: 40px;
+    }
+
+    .googleButtonContainer iframe {
+        max-height: 40px;
+    }
+
+    .googleButtonPill {
+        height: 40px;
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    .googleButtonPill svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .featureCardsGrid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+        padding: 0 var(--space-2);
+        margin: 20px auto 0;
+    }
+
+    .featureCard {
+        border-radius: 12px;
+        max-width: 100%;
+    }
+
+    .featureCardHeader {
+        padding: 14px 14px 10px;
+    }
+
+    .featureCardTitle {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .featureCardArrow {
+        width: 28px;
+        height: 28px;
+    }
+
+    .featureCardPreview {
+        min-height: 240px;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .mockupCard {
+        border-radius: 10px;
+    }
+
+    .mockupHeader {
+        padding: 8px 10px;
+    }
+
+    .mockupDots span {
+        width: 7px;
+        height: 7px;
+    }
+
+    .mockupContent {
+        padding: 10px;
+    }
+
+    .alertBanner {
+        padding: 8px 10px;
+    }
+
+    .alertBanner span {
+        font-size: 10px;
+    }
+
+    .riskHigh,
+    .riskMed,
+    .riskLow {
+        font-size: 7px;
+        padding: 3px 8px;
+        min-width: 52px;
+    }
+
+    .riskTitle {
+        font-size: 10px;
+    }
+
+    .riskMeta {
+        font-size: 8px;
+    }
+
+    .floatingWidget {
+        right: 6px;
+        bottom: 8px;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .widgetIcon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .widgetBar {
+        width: 70px;
+    }
+
+    .widgetLabel {
+        font-size: 8px;
+    }
+
+    .widgetValue {
+        font-size: 9px;
+    }
+
+    .calendarSection {
+        padding: 10px;
+    }
+
+    .agentStatusSection {
+        padding: 10px;
+    }
+
+    .kanbanCard {
+        padding: 12px;
+    }
+
+    .kanbanItem {
+        padding: 8px;
+        font-size: 9px;
+    }
+
+    .kanbanHeader {
+        font-size: 10px;
+    }
+
+    .workflowImageCard {
+        border-radius: 10px;
+    }
+
+    .trustCards {
+        gap: 8px;
+    }
+
+    .txCard {
+        padding: 10px;
+    }
+
+    .identityCard {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .idIcon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .formCard {
+        padding: 12px;
+    }
+
+    .formHeader {
+        font-size: 10px;
+    }
+
+    .formTags span {
+        font-size: 8px;
+        padding: 3px 8px;
+    }
+
+    .matchCard {
+        padding: 12px;
+    }
+
+    .matchAvatar {
+        width: 30px;
+        height: 30px;
+        font-size: 9px;
+    }
+
+    .matchName {
+        font-size: 10px;
+    }
+
+    .matchRole {
+        font-size: 8px;
+    }
+
+    .matchScore {
+        font-size: 11px;
+    }
+
+    .matchHeader {
+        font-size: 9px;
+    }
+}

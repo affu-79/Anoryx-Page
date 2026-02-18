@@ -1,0 +1,146 @@
+/**
+ * Neural Intelligence Field — central kernel, layered surfaces, particles, breathing glow.
+ * Slow, calm, precise. Not orbital, not chaotic.
+ */
+
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aura {
+  position: absolute;
+  inset: -15%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(30, 107, 255, 0.06) 0%, transparent 70%);
+  animation: auraBreath 6s ease-in-out infinite;
+}
+
+.surface,
+.surface2 {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(30, 107, 255, 0.08);
+  animation: surfacePulse 8s ease-in-out infinite;
+}
+
+.surface {
+  width: 85%;
+  height: 85%;
+  animation-delay: 0s;
+}
+
+.surface2 {
+  width: 70%;
+  height: 70%;
+  animation-delay: -2s;
+  animation-duration: 10s;
+}
+
+.svg {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 40px rgba(30, 107, 255, 0.15));
+}
+
+.glow {
+  animation: glowBreath 5s ease-in-out infinite;
+}
+
+.ringOuter {
+  transform-origin: 200px 200px;
+  animation: ringRotate 32s linear infinite;
+}
+
+.ringInner {
+  transform-origin: 200px 200px;
+  animation: ringRotate 24s linear infinite reverse;
+}
+
+.kernel {
+  filter: drop-shadow(0 0 20px rgba(30, 107, 255, 0.4));
+  animation: kernelBreath 4s ease-in-out infinite;
+}
+
+.coreIcon {
+  transform-origin: 200px 200px;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
+}
+
+.particles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  max-width: 100%;
+  max-height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pulseLine {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(30, 107, 255, 0.4), transparent);
+  border-radius: 2px;
+  animation: pulseLineFlow 4s ease-in-out infinite;
+  z-index: 3;
+}
+
+@keyframes auraBreath {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes surfacePulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes glowBreath {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes kernelBreath {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 20px rgba(30, 107, 255, 0.4)); }
+  50% { opacity: 0.95; filter: drop-shadow(0 0 28px rgba(30, 107, 255, 0.5)); }
+}
+
+@keyframes pulseLineFlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+/* Tablet only: larger animation */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .wrap {
+    max-width: 520px;
+  }
+}
+
+/* Mobile: smaller animation */
+@media (max-width: 767px) {
+  .wrap {
+    max-width: 280px;
+  }
+}

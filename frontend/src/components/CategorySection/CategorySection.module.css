@@ -1,0 +1,602 @@
+/* ── Category Definition Section ──────────────────────────── */
+
+.categorySection {
+    position: relative;
+    width: 100%;
+    padding: var(--space-7) 0;
+    background: #FFFFFF;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Vertical decorative lines */
+.categorySection::before,
+.categorySection::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.07);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.categorySection::before {
+    left: 170px;
+}
+
+.categorySection::after {
+    right: 170px;
+}
+
+/* ── Dot Grid Background ─────────────────────────────────── */
+
+.dotGrid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.15) 1.2px, transparent 1.2px);
+    background-size: 12px 12px;
+    mask-image:
+        radial-gradient(ellipse 26% 12% at 50% 35%, transparent 70%, rgba(0,0,0,0.2) 85%, black 100%),
+        radial-gradient(ellipse 70% 65% at 50% 48%, black 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.25) 80%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-image:
+        radial-gradient(ellipse 26% 12% at 50% 35%, transparent 70%, rgba(0,0,0,0.2) 85%, black 100%),
+        radial-gradient(ellipse 70% 65% at 50% 48%, black 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.25) 80%, transparent 100%);
+    -webkit-mask-composite: source-in;
+}
+
+/* ── Content Container ───────────────────────────────────── */
+
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    text-align: center;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+
+.label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #0052CC;
+    margin-bottom: var(--space-3);
+}
+
+.label.visible {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.tagline {
+    font-family: var(--font-family-heading);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 50px;
+    color: #0D1F45;
+    margin: 0 auto var(--space-4);
+    max-width: 700px;
+    letter-spacing: -0.5px;
+}
+
+.tagline.visible {
+    animation: fadeInUp 0.6s ease-out 0.1s forwards;
+}
+
+.subcopy {
+    font-size: 16px;
+    line-height: 28px;
+    color: #626F86;
+    max-width: 680px;
+    margin: 0 auto var(--space-7);
+    font-weight: 400;
+}
+
+.subcopy.visible {
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+}
+
+/* ── Cards Grid ──────────────────────────────────────────── */
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ── Individual Card ─────────────────────────────────────── */
+
+.card {
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: default;
+    overflow: hidden;
+}
+
+/* Shimmer hover effect */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    transition: none;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.card:hover::after {
+    animation: shimmer 0.8s ease-out forwards;
+}
+
+.card.visible {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.card.visible:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.card.visible:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.card.visible:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Floating animation after reveal */
+.card.floatReady {
+    animation: float 4s ease-in-out infinite;
+}
+
+.card.floatReady:nth-child(2) {
+    animation-delay: 1.3s;
+}
+
+.card.floatReady:nth-child(3) {
+    animation-delay: 2.6s;
+}
+
+/* Hover */
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* Per-card hover shadows */
+.cardBlue:hover {
+    box-shadow: 0 20px 50px rgba(0, 82, 204, 0.15);
+}
+
+.cardPurple:hover {
+    box-shadow: 0 20px 50px rgba(101, 84, 192, 0.15);
+}
+
+.cardOrange:hover {
+    box-shadow: 0 20px 50px rgba(249, 115, 22, 0.15);
+}
+
+/* ── Accent Bar (top gradient line) ──────────────────────── */
+
+.accentBar {
+    height: 3px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.accentBarBlue {
+    background: linear-gradient(90deg, #0052CC, #2684FF);
+}
+
+.accentBarPurple {
+    background: linear-gradient(90deg, #6554C0, #8777D9);
+}
+
+.accentBarOrange {
+    background: linear-gradient(90deg, #F97316, #FB923C);
+}
+
+/* ── Card Body ───────────────────────────────────────────── */
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 28px 28px 32px;
+    flex: 1;
+}
+
+/* ── Card Icon (with glow) ───────────────────────────────── */
+
+.iconWrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+.iconWrapper svg {
+    width: 28px;
+    height: 28px;
+    position: relative;
+    z-index: 1;
+}
+
+.iconBlue {
+    background: radial-gradient(circle, #DEEBFF 40%, rgba(0, 82, 204, 0.08) 100%);
+    color: #0052CC;
+    box-shadow: 0 0 20px rgba(0, 82, 204, 0.12);
+}
+
+.iconPurple {
+    background: radial-gradient(circle, #EDE7F6 40%, rgba(101, 84, 192, 0.08) 100%);
+    color: #6554C0;
+    box-shadow: 0 0 20px rgba(101, 84, 192, 0.12);
+}
+
+.iconOrange {
+    background: radial-gradient(circle, #FFF3E0 40%, rgba(249, 115, 22, 0.08) 100%);
+    color: #F97316;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.12);
+}
+
+/* ── Card Text ───────────────────────────────────────────── */
+
+.productName {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.productNameBlue {
+    color: #0052CC;
+}
+
+.productNamePurple {
+    color: #6554C0;
+}
+
+.productNameOrange {
+    color: #F97316;
+}
+
+.cardSubtitle {
+    font-family: var(--font-family-heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: #0D1F45;
+    line-height: 28px;
+    margin: 0;
+}
+
+.cardDescription {
+    font-size: 14px;
+    line-height: 24px;
+    color: #626F86;
+    margin: 0;
+    flex: 1;
+}
+
+/* ── CTA Button ──────────────────────────────────────────── */
+
+.cardButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, gap 0.25s ease;
+    text-decoration: none;
+    align-self: flex-start;
+    margin-top: 4px;
+}
+
+.cardButton svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+}
+
+.cardButton:hover {
+    transform: scale(1.04);
+    gap: 12px;
+}
+
+.cardButton:hover svg {
+    transform: translateX(3px);
+}
+
+.btnBlue {
+    background: linear-gradient(135deg, #0052CC, #2684FF);
+    box-shadow: 0 4px 14px rgba(0, 82, 204, 0.25);
+}
+
+.btnBlue:hover {
+    box-shadow: 0 6px 22px rgba(0, 82, 204, 0.35);
+    background: linear-gradient(135deg, #0065FF, #4C9AFF);
+}
+
+.btnPurple {
+    background: linear-gradient(135deg, #6554C0, #8777D9);
+    box-shadow: 0 4px 14px rgba(101, 84, 192, 0.25);
+}
+
+.btnPurple:hover {
+    box-shadow: 0 6px 22px rgba(101, 84, 192, 0.35);
+    background: linear-gradient(135deg, #7668D0, #998AE3);
+}
+
+.btnOrange {
+    background: linear-gradient(135deg, #F97316, #FB923C);
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.25);
+}
+
+.btnOrange:hover {
+    box-shadow: 0 6px 22px rgba(249, 115, 22, 0.35);
+    background: linear-gradient(135deg, #FB923C, #FDBA74);
+}
+
+/* ── Card Bottom Tint ────────────────────────────────────── */
+
+.cardBlue {
+    background: linear-gradient(180deg, #FFFFFF 70%, rgba(0, 82, 204, 0.03) 100%);
+}
+
+.cardPurple {
+    background: linear-gradient(180deg, #FFFFFF 70%, rgba(101, 84, 192, 0.03) 100%);
+}
+
+.cardOrange {
+    background: linear-gradient(180deg, #FFFFFF 70%, rgba(249, 115, 22, 0.03) 100%);
+}
+
+/* ── Keyframes ───────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 150%;
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.14);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* ── Responsive: Tablet ──────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .categorySection {
+        padding: var(--space-6) 0;
+    }
+
+    .categorySection::before {
+        left: 80px;
+    }
+
+    .categorySection::after {
+        right: 80px;
+    }
+
+    .tagline {
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    .subcopy {
+        font-size: 15px;
+        line-height: 26px;
+        margin-bottom: var(--space-6);
+    }
+
+    .cardsGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .cardBody {
+        padding: 22px 22px 28px;
+        gap: 14px;
+    }
+
+    .cardSubtitle {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .cardButton {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+
+    .dotGrid {
+        mask-image:
+            radial-gradient(ellipse 32% 14% at 50% 32%, transparent 70%, rgba(0,0,0,0.2) 85%, black 100%),
+            radial-gradient(ellipse 85% 80% at 50% 48%, black 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.25) 80%, transparent 100%);
+        mask-composite: intersect;
+        -webkit-mask-image:
+            radial-gradient(ellipse 32% 14% at 50% 32%, transparent 70%, rgba(0,0,0,0.2) 85%, black 100%),
+            radial-gradient(ellipse 85% 80% at 50% 48%, black 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.25) 80%, transparent 100%);
+        -webkit-mask-composite: source-in;
+    }
+}
+
+/* ── Responsive: Mobile ──────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .categorySection {
+        padding: var(--space-5) 0;
+    }
+
+    .categorySection::before,
+    .categorySection::after {
+        display: none;
+    }
+
+    .container {
+        padding: 0 var(--space-3);
+    }
+
+    .tagline {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .subcopy {
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: var(--space-5);
+    }
+
+    /* iPad Mini & tablets: keep 3 columns in a row */
+    .cardsGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .cardBody {
+        padding: 24px 20px 28px;
+    }
+
+    .cardSubtitle {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .dotGrid {
+        mask-image:
+            radial-gradient(ellipse 45% 20% at 50% 28%, transparent 70%, rgba(0,0,0,0.2) 85%, black 100%),
+            radial-gradient(ellipse 85% 75% at 50% 48%, black 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.25) 80%, transparent 100%);
+        mask-composite: intersect;
+        -webkit-mask-image:
+            radial-gradient(ellipse 45% 20% at 50% 28%, transparent 70%, rgba(0,0,0,0.2) 85%, black 100%),
+            radial-gradient(ellipse 85% 75% at 50% 48%, black 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.25) 80%, transparent 100%);
+        -webkit-mask-composite: source-in;
+    }
+}
+
+/* ── Responsive: Small Phone ─────────────────────────────── */
+
+@media (max-width: 480px) {
+    .categorySection {
+        padding: var(--space-4) 0;
+    }
+
+    .container {
+        padding: 0 var(--space-2);
+    }
+
+    .label {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .tagline {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .subcopy {
+        font-size: 13px;
+        line-height: 22px;
+    }
+
+    /* Mobile: single column */
+    .cardsGrid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        max-width: 400px;
+    }
+
+    .cardBody {
+        padding: 18px 16px 24px;
+        gap: 12px;
+    }
+
+    .iconWrapper {
+        width: 48px;
+        height: 48px;
+    }
+
+    .iconWrapper svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .cardSubtitle {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .cardDescription {
+        font-size: 13px;
+        line-height: 22px;
+    }
+}

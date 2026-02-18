@@ -1,0 +1,434 @@
+/* ═══════════════════════════════════════════════════════════
+   FOOTER — Premium enterprise footer (global company)
+   ═══════════════════════════════════════════════════════════ */
+
+.footer {
+    position: relative;
+    background: linear-gradient(180deg, #061018 0%, #0a1628 40%, #0d1b2a 100%);
+    color: rgba(255, 255, 255, 0.75);
+    z-index: 50;
+}
+
+.gradientBorder {
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        #0052CC,
+        #2563eb,
+        #0ea5e9,
+        #0052CC
+    );
+    background-size: 200% 100%;
+    animation: gradientMove 8s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.footerInner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 32px 36px;
+}
+
+/* ── Main grid: brand | 5 link columns (justified) | connect ─ */
+
+.footerGrid {
+    display: grid;
+    grid-template-columns: minmax(200px, 1.1fr) minmax(0, 3fr) minmax(100px, 0.85fr);
+    gap: 40px 40px;
+    align-items: start;
+    margin-bottom: 36px;
+}
+
+.brandBlock {
+    min-width: 0;
+}
+
+.footerLogo {
+    display: inline-block;
+    font-family: var(--font-family-heading);
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    transition: color 0.2s, opacity 0.2s;
+}
+
+.footerLogo:hover {
+    color: #fff;
+    opacity: 0.92;
+}
+
+.tagline {
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.52);
+    max-width: 260px;
+    margin: 0 0 14px;
+}
+
+.globalBadge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 6px 11px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+}
+
+/* ── Link columns: 5 equal columns, justified ────────────── */
+
+.footerLinksGrid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0 28px;
+}
+
+.footerColumn {
+    min-width: 0;
+}
+
+.footerColumnTitle {
+    font-family: var(--font-family-heading);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0 0 16px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footerLinkList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footerLinkList li {
+    margin-bottom: 4px;
+}
+
+.footerLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 6px 8px;
+    margin: 0 -8px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.footerLink:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.footerLinkIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.2s;
+}
+
+.footerLink:hover .footerLinkIcon {
+    color: rgba(0, 82, 204, 0.95);
+}
+
+.footerLinkText {
+    min-width: 0;
+}
+
+/* ── Connect (social) block ──────────────────────────────── */
+
+.socialBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.socialLabel {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+}
+
+.socialRow {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.socialIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.socialIcon:hover {
+    background: rgba(0, 82, 204, 0.22);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    margin-bottom: 24px;
+}
+
+.bottomRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.copyright {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+}
+
+.legal {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.legalLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.legalLink:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.legalLinkIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.2s;
+}
+
+.legalLink:hover .legalLinkIcon {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .footerGrid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        margin-bottom: 28px;
+    }
+
+    .footerLinksGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px 20px;
+    }
+
+    .socialBlock {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .footerInner {
+        padding: 40px 20px 28px;
+    }
+
+    .footerGrid {
+        gap: 32px;
+        margin-bottom: 24px;
+    }
+
+    .footerLogo {
+        font-size: 24px;
+    }
+
+    .tagline {
+        font-size: 13px;
+        max-width: 100%;
+    }
+
+    .footerLinksGrid {
+        gap: 24px 28px;
+    }
+
+    .footerColumnTitle {
+        margin-bottom: 10px;
+    }
+
+    .footerLinkList li {
+        margin-bottom: 6px;
+    }
+
+    .footerLink {
+        font-size: 13px;
+    }
+
+    .socialIcon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .socialIcon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .bottomRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .copyright {
+        font-size: 12px;
+    }
+
+    .legal {
+        gap: 20px;
+    }
+
+    .legalLink {
+        font-size: 12px;
+    }
+
+    .divider {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gradientBorder {
+        height: 2px;
+    }
+
+    .footerInner {
+        padding: 32px 16px 24px;
+    }
+
+    .footerGrid {
+        gap: 28px;
+        margin-bottom: 20px;
+    }
+
+    .footerLogo {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+
+    .tagline {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .globalBadge {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .footerLinksGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 16px;
+    }
+
+    .footerLink {
+        padding: 5px 6px;
+        gap: 8px;
+        font-size: 12px;
+    }
+
+    .footerLinkIcon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .footerColumnTitle {
+        font-size: 10px;
+        margin-bottom: 8px;
+    }
+
+    .socialRow {
+        gap: 10px;
+    }
+
+    .socialIcon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .socialIcon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .divider {
+        margin-bottom: 16px;
+    }
+
+    .bottomRow {
+        gap: 10px;
+    }
+
+    .copyright {
+        font-size: 11px;
+    }
+
+    .legalLink {
+        font-size: 11px;
+    }
+
+    .legal {
+        gap: 16px;
+    }
+}
+

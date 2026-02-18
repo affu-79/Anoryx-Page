@@ -1,0 +1,889 @@
+/**
+ * Founder's Note — Premium, light theme, full-viewport stripes.
+ * Content from company_info.md. Vertical stripe accents, subtle motion.
+ */
+
+.page {
+  background: #FAFBFC;
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+.pageStrip {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-left: 1px solid var(--color-border-default);
+  border-right: 1px solid var(--color-border-default);
+  min-height: 0;
+}
+
+.sectionStripe {
+  position: relative;
+}
+
+.sectionStripe::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 82, 204, 0.15) 20%, rgba(0, 82, 204, 0.2) 50%, rgba(0, 82, 204, 0.15) 80%, transparent 100%);
+  pointer-events: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.hero.inView,
+.section.inView,
+.sectionAlt.inView,
+.noteSection.inView,
+.whySection.inView,
+.philosophySection.inView,
+.visionSection.inView,
+.signatureSection.inView {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Section 1: Hero (dark blue background, content on white panel) ── */
+.hero {
+  position: relative;
+  padding: 40px var(--space-4) var(--space-7);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(165deg, #0c1222 0%, #1a2744 45%, #0f172a 100%);
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .heroInner {
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-7);
+  }
+}
+
+.heroPortraitWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.heroPortrait {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroPortraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.heroPortraitInitials {
+  font-family: var(--font-family-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: -0.02em;
+}
+
+.heroContent {
+  text-align: center;
+  background: #fff;
+  padding: var(--space-5);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 768px) {
+  .heroContent {
+    text-align: left;
+    padding: var(--space-6);
+  }
+}
+
+.heroLabel {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.heroTitle {
+  font-family: var(--font-family-heading);
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.heroMeta {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-1);
+}
+
+.heroRole {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ── Section 2: Full Note (notebook-style column) ───────────── */
+.noteSection {
+  padding: var(--space-7) var(--space-4);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.noteColumn {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.noteVerticalStripe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 82, 204, 0.25) 20%, rgba(0, 82, 204, 0.35) 50%, rgba(0, 82, 204, 0.25) 80%, transparent 100%);
+  border-radius: 2px;
+}
+
+.noteBody {
+  padding-left: var(--space-5);
+}
+
+.noteBody p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.noteBody p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Section 3: Why Anoryx (premium + UI mock) ───────────────── */
+.whySection {
+  position: relative;
+  padding: var(--space-8) var(--space-4);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.whyBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #FAFCFF 0%, #FFFFFF 30%, #F8FAFC 100%);
+  box-shadow: 0 1px 0 rgba(0, 82, 204, 0.06);
+  pointer-events: none;
+}
+
+.whySection .container {
+  position: relative;
+  z-index: 1;
+}
+
+.whyLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .whyLayout {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-8);
+    align-items: stretch;
+  }
+}
+
+.whyHeadingWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.whySectionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0, 82, 204, 0.12) 0%, rgba(0, 101, 255, 0.08) 100%);
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.whySectionHeading {
+  font-family: var(--font-family-heading);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.whyLead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
+}
+
+.sectionHeading {
+  font-family: var(--font-family-heading);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-5);
+  letter-spacing: -0.02em;
+}
+
+.sectionHeadingCentered {
+  font-family: var(--font-family-heading);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-5);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.whyContent p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
+}
+
+.whyContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* UI mock card — right side */
+.whyViz {
+  position: relative;
+}
+
+.whyVizCard {
+  position: relative;
+  background: linear-gradient(165deg, #FAFCFF 0%, #F0F4FF 45%, #EEF4FD 100%);
+  border: 1px solid rgba(0, 82, 204, 0.12);
+  border-radius: 20px;
+  padding: var(--space-5);
+  min-height: 280px;
+  box-shadow: 0 4px 24px rgba(9, 30, 66, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  overflow: hidden;
+}
+
+.whyVizCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-secondary), #0065FF);
+  border-radius: 20px 0 0 20px;
+}
+
+.whyVizHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.whyVizDots {
+  display: flex;
+  gap: 6px;
+}
+
+.whyVizDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 82, 204, 0.25);
+  display: block;
+}
+
+.whyVizDot:nth-child(1) { background: rgba(234, 67, 53, 0.5); }
+.whyVizDot:nth-child(2) { background: rgba(251, 188, 5, 0.5); }
+.whyVizDot:nth-child(3) { background: rgba(52, 168, 83, 0.5); }
+
+.whyVizCardTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.whyVizMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--space-4);
+}
+
+.whyVizPill {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-secondary);
+  padding: 5px 10px;
+  background: rgba(0, 82, 204, 0.08);
+  border-radius: 6px;
+}
+
+.whyVizRows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.whyVizRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.whyVizRowLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+.whyVizRowTrack {
+  position: relative;
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(0, 82, 204, 0.1);
+  overflow: hidden;
+}
+
+.whyVizRowBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(90deg, var(--color-secondary), #0065FF);
+  transition: width 0.5s ease;
+  min-width: 4px;
+}
+
+.whyVizNodes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+
+.whyVizNode {
+  aspect-ratio: 1;
+  max-width: 44px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: rgba(0, 82, 204, 0.08);
+  animation: whyNodeFloat 6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.4s);
+}
+
+@keyframes whyNodeFloat {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+.whyVizFooter {
+  margin-top: var(--space-4);
+  height: 5px;
+  background: rgba(0, 82, 204, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.whyVizProgress {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-secondary), #0065FF);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+@media (max-width: 767px) {
+  .whyHeadingWrap {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .whySectionHeading {
+    text-align: center;
+  }
+
+  .whyLead {
+    font-size: 17px;
+  }
+
+  .whyVizCard {
+    min-height: 260px;
+  }
+}
+
+/* ── Section 4: Roadmap Table (premium + responsive) ─────────── */
+.section {
+  padding: var(--space-7) var(--space-4);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.roadmapSection .container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.roadmapHeadingWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.roadmapSectionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0, 82, 204, 0.12) 0%, rgba(0, 101, 255, 0.08) 100%);
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.roadmapSectionHeading {
+  font-family: var(--font-family-heading);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 82, 204, 0.1);
+  box-shadow: 0 4px 24px rgba(9, 30, 66, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+
+.roadmapTable {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.roadmapTable thead {
+  background: linear-gradient(180deg, #F0F4FF 0%, #E8EEFC 100%);
+}
+
+.roadmapTable th {
+  text-align: left;
+  padding: var(--space-4) var(--space-5);
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  border-bottom: 2px solid rgba(0, 82, 204, 0.15);
+}
+
+.roadmapThTimeline {
+  width: 120px;
+}
+
+.roadmapTable td {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid rgba(0, 82, 204, 0.08);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.roadmapTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.roadmapTable tbody tr:hover {
+  background: rgba(0, 82, 204, 0.04);
+}
+
+.roadmapTable tbody tr {
+  transition: background 0.2s ease;
+}
+
+.timelineBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.timelineIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--color-secondary), #0052CC);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 82, 204, 0.25);
+}
+
+/* Tablet: card layout for better readability */
+@media (max-width: 900px) {
+  .tableWrap {
+    overflow-x: visible;
+    min-width: 0;
+  }
+
+  .roadmapTable {
+    display: block;
+    min-width: 0;
+  }
+
+  .roadmapTable thead {
+    display: none;
+  }
+
+  .roadmapTable tbody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .roadmapTable tr {
+    display: block;
+    margin: 0;
+    padding: var(--space-5);
+    background: #fff;
+    border: 1px solid rgba(0, 82, 204, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(9, 30, 66, 0.06);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .roadmapTable tr:hover {
+    box-shadow: 0 6px 20px rgba(9, 30, 66, 0.08);
+    border-color: rgba(0, 82, 204, 0.18);
+  }
+
+  .roadmapTable td {
+    display: block;
+    padding: var(--space-3) 0;
+    border-bottom: none;
+    border-radius: 0;
+  }
+
+  .roadmapTable td:not(:first-child) {
+    padding-top: var(--space-2);
+  }
+
+  .roadmapTable td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .roadmapTable td:first-child {
+    padding-top: 0;
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid rgba(0, 82, 204, 0.08);
+    margin-bottom: var(--space-2);
+  }
+
+  .roadmapTable td:first-child::before {
+    margin-bottom: 8px;
+  }
+}
+
+/* Mobile: compact cards, centered heading */
+@media (max-width: 767px) {
+  .roadmapHeadingWrap {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: var(--space-5);
+  }
+
+  .roadmapSectionHeading {
+    text-align: center;
+  }
+
+  .roadmapSection .container {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
+  .tableWrap {
+    border-radius: 14px;
+    margin-left: -2px;
+    margin-right: -2px;
+    max-width: calc(100% + 4px);
+  }
+
+  .roadmapTable tr {
+    padding: var(--space-4);
+    border-radius: 12px;
+  }
+
+  .roadmapTable td {
+    font-size: 14px;
+  }
+
+  .timelineBadge {
+    font-size: 14px;
+  }
+
+  .timelineIcon {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+  }
+}
+
+/* ── Section 5: Philosophy ──────────────────────────────────── */
+.sectionAlt {
+  padding: var(--space-7) var(--space-4);
+  background: #fff;
+  box-shadow: 0 1px 0 var(--color-border-default);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.philosophySection {
+  position: relative;
+}
+
+.philosophyBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #FAFCFF 0%, #FFFFFF 100%);
+  pointer-events: none;
+}
+
+.philosophySection .container {
+  position: relative;
+  z-index: 1;
+}
+
+.philosophyContent {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.philosophyContent p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4);
+}
+
+.philosophyContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Section 6: Vision ──────────────────────────────────────── */
+.visionSection {
+  position: relative;
+  padding: var(--space-7) var(--space-4);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.visionBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #F5FAFF 0%, #EEF4FD 50%, #FAFBFC 100%);
+  pointer-events: none;
+}
+
+.visionSection .container {
+  position: relative;
+  z-index: 1;
+}
+
+.visionLead {
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--color-text-primary);
+  max-width: 640px;
+  margin: 0 auto var(--space-4);
+  text-align: center;
+  font-weight: 500;
+}
+
+.visionBody {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ── Section 7: Signature (no stripe) ────────────────────────── */
+.signatureSection {
+  padding: var(--space-7) var(--space-4);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.signatureBlock {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.signatureLine {
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 0 auto var(--space-4);
+  background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+  border-radius: 1px;
+  animation: signatureGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes signatureGlow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.signatureName {
+  font-family: var(--font-family-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-1);
+  letter-spacing: -0.02em;
+}
+
+.signatureTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin: 0 0 var(--space-1);
+}
+
+.signatureCompany {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .hero {
+    padding: 28px var(--space-3) var(--space-5);
+  }
+
+  .heroPortrait {
+    width: 120px;
+    height: 120px;
+  }
+
+  .heroPortraitInitials {
+    font-size: 24px;
+  }
+
+  .section,
+  .sectionAlt,
+  .noteSection,
+  .whySection,
+  .philosophySection,
+  .visionSection {
+    padding: var(--space-5) var(--space-3);
+  }
+
+  .noteBody {
+    padding-left: var(--space-4);
+  }
+}
