@@ -1,0 +1,257 @@
+/**
+ * Animated Product Launch Announcement Strip
+ * Below navbar, edge-to-edge. Premium gradient motion, subtle glow, enterprise feel.
+ * Animations use transform, opacity, background-position only for 60fps.
+ */
+
+.strip {
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 32px;
+  height: clamp(32px, 4vh, 44px);
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  /* Background gradient — deep blue → electric blue → violet → dark navy */
+  background: linear-gradient(
+    90deg,
+    #0f172a 0%,
+    #1e3a5f 18%,
+    #1e40af 35%,
+    #3b82f6 50%,
+    #6366f1 65%,
+    #1e3a5f 82%,
+    #0f172a 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  animation: stripBgMove 16s ease-in-out infinite;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.strip:hover {
+  opacity: 1;
+  filter: brightness(1.08);
+}
+
+/* Layer 1 — Background gradient motion */
+@keyframes stripBgMove {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Shimmer overlay — subtle horizontal energy */
+.stripShimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  animation: stripShimmerMove 12s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes stripShimmerMove {
+  0%, 100% {
+    background-position: 0% 0%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 100% 0%;
+    opacity: 0.9;
+  }
+}
+
+/* Layer 3 — Subtle attention pulse every ~8s */
+.stripPulse {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 200% at 50% 50%,
+    rgba(59, 130, 246, 0.15) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  animation: stripPulseGlow 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes stripPulseGlow {
+  0%, 88% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  92% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+  96% {
+    opacity: 0.2;
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.stripContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* Micro indicator dot — electric blue, breathing */
+.stripDot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.8);
+  animation: stripDotBreathe 2.5s ease-in-out infinite;
+}
+
+@keyframes stripDotBreathe {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 12px rgba(34, 211, 238, 1);
+  }
+}
+
+/* Wrapper for text (and marquee on mobile) */
+.stripTextWrap {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.stripTextInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Text with animated gradient fill */
+.stripText {
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #93c5fd 25%,
+    #c4b5fd 50%,
+    #93c5fd 75%,
+    #ffffff 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: clamp(13px, 1.5vw, 15px);
+  line-height: 1.2;
+  white-space: nowrap;
+  animation: stripTextGradient 14s ease-in-out infinite;
+}
+
+/* Hide duplicate text on desktop (used only for mobile marquee) */
+.stripTextInner .stripText:nth-child(2) {
+  display: none;
+}
+
+.strip:hover .stripText {
+  filter: brightness(1.15);
+}
+
+@keyframes stripTextGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ── Tablet: full width, slightly smaller text ───────────────────── */
+@media (max-width: 1024px) {
+  .strip {
+    min-height: 30px;
+    height: clamp(28px, 3.5vh, 38px);
+  }
+
+  .stripText {
+    font-size: clamp(12px, 1.4vw, 14px);
+  }
+}
+
+/* ── Mobile: strip height 28–36px; smooth marquee for long text ───── */
+@media (max-width: 768px) {
+  .strip {
+    min-height: 28px;
+    height: clamp(28px, 4vh, 36px);
+  }
+
+  .stripContent {
+    padding: 0 12px;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .stripTextWrap {
+    overflow: hidden;
+    width: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .stripTextInner {
+    animation: stripMarquee 35s linear infinite;
+  }
+
+  .stripTextInner .stripText:nth-child(2) {
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .stripText {
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes stripMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

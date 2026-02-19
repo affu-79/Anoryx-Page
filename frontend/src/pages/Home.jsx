@@ -9,6 +9,7 @@ import ExecutionCapabilities from '../components/ExecutionCapabilities/Execution
 import FoundersNote from '../components/FoundersNote/FoundersNote.jsx';
 import StripeSection from '../components/StripeSection/StripeSection.jsx';
 import PlatformIntelligenceIndex from '../components/PlatformIntelligenceIndex/PlatformIntelligenceIndex.jsx';
+import AnnouncementStrip from '../components/AnnouncementStrip/AnnouncementStrip.jsx';
 import n8nImage from '../assets/n8n.jpg';
 import { useAuth } from '../context/AuthContext.jsx';
 
@@ -161,7 +162,7 @@ function Home() {
 
   return (
     <>
-      <div className={styles.paleBand}></div>
+      <AnnouncementStrip />
       <section className={styles.hero}>
         <div className={styles.blackSection}>
           <div className={styles.blackSectionContent}>
