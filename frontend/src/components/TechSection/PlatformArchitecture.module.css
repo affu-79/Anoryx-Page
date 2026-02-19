@@ -50,6 +50,15 @@
     z-index: 100;
 }
 
+/* Tablet horizontal only: shift ribbons 200px right, 100px down; extend width 70px each side */
+@media (orientation: landscape) and (min-width: 768px) and (max-width: 1280px) {
+    .ribbonContainer {
+        left: calc(-15vw + 200px - 70px);
+        width: calc(130vw + 140px);
+        top: calc(-60px + 100px);
+    }
+}
+
 /* White opaque fill between the two ribbons */
 .ribbonGap {
     position: absolute;
@@ -245,11 +254,11 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   MOBILE + TABLET (≤ 1024px)
+   MOBILE + TABLET (≤ 1024px) portrait only
    Completely flat horizontal ribbons in normal document flow.
-   No positioning, no transforms, no z-index, no overlapping.
+   Tablet horizontal keeps desktop ribbon layout (positioned, angled); see globals.css zoom.
    ══════════════════════════════════════════════════════════════ */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
 
     /* Section: normal flow; 150px less height from bottom (tablet only) */
     .platformSection {

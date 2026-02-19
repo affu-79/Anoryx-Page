@@ -27,9 +27,6 @@ const FOOTER_SECTIONS = [
     links: [
       { label: 'Solutions', to: '/solutions', icon: <svg {...iconProps}><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /></svg> },
       { label: 'Enterprise Automation', to: '/solutions/enterprise-automation', icon: <svg {...iconProps}><circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" /></svg> },
-      { label: 'AI Infrastructure', to: '/solutions/ai-infrastructure', icon: <svg {...iconProps}><path d="M12 2a4 4 0 0 0-4 4v2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-4V6a4 4 0 0 0-4-4z" /><path d="M9 12h6" /></svg> },
-      { label: 'Privacy-First AI', to: '/solutions/privacy-first-ai', icon: <svg {...iconProps}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg> },
-      { label: 'Autonomous Decision Systems', to: '/solutions/autonomous-decision-systems', icon: <svg {...iconProps}><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.64 5.64l2.83 2.83M15.53 15.53l2.83 2.83" /><circle cx="12" cy="12" r="2.5" /></svg> },
       { label: 'Industry Applications', to: '/solutions/industry-applications', icon: <svg {...iconProps}><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01" /></svg> },
     ],
   },

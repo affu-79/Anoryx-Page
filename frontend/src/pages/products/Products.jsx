@@ -188,6 +188,12 @@ export default function Products() {
               <h3 className={styles.subsectionTitle}>Market Position and Opportunity</h3>
               <p>PII Sentinel fits in the privacy infrastructure and enterprise AI security market. It supports enterprises adopting AI while meeting global regulatory requirements (e.g. GDPR, DPDP). The market opportunity spans enterprises handling sensitive customer data globally—TAM in privacy and data protection continues to expand as regulation and data volumes increase.</p>
             </div>
+
+            <div className={styles.mvpDemoBlock}>
+              <h3 className={styles.mvpDemoTitle}>MVP Demo Video</h3>
+              <p className={styles.mvpDemoText}>Watch the PII Sentinel MVP demo to see privacy-first intelligence infrastructure in action—detection, analysis, and automated protection workflows.</p>
+              <Link to="/solutions#pii-sentinel-video" state={{ autoExpandVideo: true }} className={styles.mvpDemoBtn}>Watch MVP Demo Video</Link>
+            </div>
           </div>
         </section>
 

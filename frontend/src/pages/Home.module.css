@@ -19,8 +19,8 @@
     pointer-events: none;
 }
 
-/* ── Mobile + Tablet: flatten stickyScene to normal flow ── */
-@media (max-width: 1024px) {
+/* ── Mobile + Tablet: flatten stickyScene to normal flow (portrait only) ── */
+@media (max-width: 1024px) and (orientation: portrait) {
     .stickyScene {
         position: static;
     }
@@ -218,7 +218,7 @@
     justify-content: center;
 }
 
-.googleButtonContainer > div {
+.googleButtonContainer>div {
     width: 100% !important;
     min-width: 100%;
 }
@@ -348,9 +348,9 @@
     display: block;
 }
 
-/* Tablet override needs !important to beat base styles defined later in file */
+/* Tablet override needs !important to beat base styles defined later in file (portrait only) */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
     .blackSection {
         margin-top: 40px;
         min-height: auto;

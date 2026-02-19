@@ -586,7 +586,6 @@ export default function About() {
               We are building technology that is intelligent, secure, responsible, and globally impactful. If you share our focus on deep-technology and long-term impact, we would like to hear from you.
             </p>
             <div className={styles.ctaButtons}>
-              <Link to="/contact" className={styles.ctaBtnPrimary}>Careers</Link>
               <Link to="/contact" className={styles.ctaBtnSecondary}>Contact</Link>
             </div>
           </div>

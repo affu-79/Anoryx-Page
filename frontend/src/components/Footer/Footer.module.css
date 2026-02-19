@@ -11,20 +11,25 @@
 
 .gradientBorder {
     height: 3px;
-    background: linear-gradient(
-        90deg,
-        #0052CC,
-        #2563eb,
-        #0ea5e9,
-        #0052CC
-    );
+    background: linear-gradient(90deg,
+            #0052CC,
+            #2563eb,
+            #0ea5e9,
+            #0052CC);
     background-size: 200% 100%;
     animation: gradientMove 8s ease-in-out infinite;
 }
 
 @keyframes gradientMove {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .footerInner {
@@ -261,8 +266,9 @@
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
+/* Tablet landscape uses desktop layout (see globals.css zoom). */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
     .footerGrid {
         grid-template-columns: 1fr;
         gap: 36px;
@@ -431,4 +437,3 @@
         gap: 16px;
     }
 }
-

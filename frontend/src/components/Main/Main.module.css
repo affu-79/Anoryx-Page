@@ -256,8 +256,9 @@
 }
 
 /* ── Responsive ──────────────────────────────────────────────– */
+/* Tablet landscape uses desktop layout (see globals.css zoom). */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
     .main {
         padding: var(--space-5);
     }
@@ -517,7 +518,7 @@
 
 /* ── Image Section Responsive ─────────────────────────────── */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
     .imageSection {
         padding: var(--space-5) 0;
     }
@@ -593,7 +594,7 @@
 
 /* ── About Anoryx Responsive ──────────────────────────────── */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
     .aboutSection {
         top: calc(12% - 10px);
         left: 6%;
@@ -1001,7 +1002,7 @@
 
 /* ── Featured Section Responsive ────────────────────────── */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
     .featuredSection {
         padding: var(--space-4) var(--space-4) 0;
         margin-top: -135px;
@@ -2718,7 +2719,7 @@
 
 /* ── Feature Cards Responsive ─────────────────────────────── */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
     .featureCardsContainer {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-5);

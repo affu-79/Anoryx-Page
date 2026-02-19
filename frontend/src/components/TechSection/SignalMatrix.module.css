@@ -783,10 +783,10 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   TABLET (≤ 1024px) — Compact System Cluster
-   Dense, focused, premium intelligence cluster topology.
+   TABLET (≤ 1024px) portrait only — Compact System Cluster
+   Landscape uses desktop layout (see globals.css zoom for tablet horizontal).
    ══════════════════════════════════════════════════════════════ */
-@media(max-width:1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
 
     /* ── Section ──────────────────────────────────────────── */
     .section {

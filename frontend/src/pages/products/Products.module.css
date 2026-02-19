@@ -502,6 +502,55 @@
   }
 }
 
+/* PII Sentinel — MVP Demo Video block (link to Solutions page video) */
+.mvpDemoBlock {
+  margin-top: var(--space-7);
+  padding: var(--space-6);
+  background: linear-gradient(165deg, #F0F4FF 0%, #E8EEFF 100%);
+  border: 1px solid rgba(0, 82, 204, 0.12);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.mvpDemoTitle {
+  font-family: var(--font-family-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.mvpDemoText {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0 auto var(--space-4);
+  max-width: 520px;
+}
+
+.mvpDemoBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px var(--space-5);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #0065FF 100%);
+  border: none;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 82, 204, 0.25);
+  transition: transform var(--transition-fast), box-shadow var(--transition-base);
+}
+
+.mvpDemoBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 82, 204, 0.35);
+}
+
 /* In progress / coming soon block (e.g. B4Labs) */
 .inProgressBlock {
   max-width: 560px;

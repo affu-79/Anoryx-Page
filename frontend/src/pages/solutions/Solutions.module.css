@@ -496,10 +496,134 @@
   letter-spacing: -0.02em;
 }
 
+.videoOuterWrap {
+  position: relative;
+}
+
 .videoWrapPremium {
   margin: 0 0 var(--space-5);
   display: flex;
   justify-content: center;
+}
+
+/* Fullscreen overlay — rendered in portal to body; entire device viewport */
+.videoFullscreenWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
+  z-index: 2147483647;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+/* Invisible tap-to-close layer: sits above video so taps close fullscreen instead of opening YouTube on tablet/mobile */
+.videoFullscreenTapClose {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.videoFullscreenWrap .videoWrapPremium {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+
+.videoFullscreenWrap .videoCardFullscreen {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  min-width: 100%;
+  min-height: 100%;
+  border-radius: 0;
+  animation: videoZoomOut 1.4s ease-out forwards;
+}
+
+.videoFullscreenWrap .videoCardFullscreen .videoAspect {
+  height: 100%;
+  padding-bottom: 0;
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes videoZoomOut {
+  from {
+    transform: scale(0.88);
+    opacity: 0.92;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.videoFullscreenClose {
+  position: fixed;
+  top: calc(20px + env(safe-area-inset-top, 0px));
+  right: calc(20px + env(safe-area-inset-right, 0px));
+  z-index: 2147483647;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.videoFullscreenClose:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* Larger touch target on mobile and tablet so close works reliably */
+@media (max-width: 1024px) {
+  .videoFullscreenClose {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    top: calc(16px + env(safe-area-inset-top, 0px));
+    right: calc(16px + env(safe-area-inset-right, 0px));
+  }
+
+  .videoFullscreenClose svg {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .videoCard {

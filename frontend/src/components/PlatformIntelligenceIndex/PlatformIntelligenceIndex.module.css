@@ -268,18 +268,26 @@
   }
 }
 
-/* ── Mobile ──────────────────────────────────────────────────── */
+/* ── Mobile: full viewport width, no side margins ───────────────── */
 @media (max-width: 768px) {
   .section {
+    width: 100%;
+    max-width: 100vw;
     padding: var(--space-6) var(--space-3);
+    box-sizing: border-box;
   }
 
-  .section::before {
-    left: 60px;
-  }
-
+  .section::before,
   .section::after {
-    right: 60px;
+    display: none;
+  }
+
+  .container {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
   }
 
   .header {
@@ -303,6 +311,18 @@
     padding-right: var(--space-2);
   }
 
+  /* Force answers collapsed on mobile: grid 0fr can fail on some mobile browsers */
+  .answerWrapper {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 280ms ease-out;
+  }
+
+  .module[data-open="true"] .answerWrapper {
+    max-height: 2000px;
+  }
+
   .answerInner {
     padding: 0 var(--space-3) var(--space-3);
   }
@@ -318,5 +338,21 @@
   .knowMore {
     min-height: 44px;
     align-items: center;
+  }
+}
+
+/* ── Small mobile: tighter horizontal padding so section fills screen ── */
+@media (max-width: 480px) {
+  .section {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+  .trigger {
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .answerInner {
+    padding: 0 var(--space-2) var(--space-3);
   }
 }

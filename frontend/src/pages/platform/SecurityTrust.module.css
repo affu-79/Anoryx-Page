@@ -646,6 +646,21 @@
   .flowViz {
     flex-direction: column;
   }
+
+  /* Arrows point downwards on mobile to match vertical flow */
+  .flowArrow {
+    font-size: 0;
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .flowArrow::before {
+    content: "↓";
+    font-size: 20px;
+    color: #64748B;
+    display: block;
+    line-height: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -4,7 +4,8 @@
  */
 
 import { useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Solutions.module.css';
 
 const PII_SENTINEL_YOUTUBE_ID = 'c5985A2xU6Q';
@@ -71,6 +72,35 @@ function CapabilityIcon({ name }) {
 export default function Solutions() {
   const sectionRefs = useRef([]);
   const [piiVideoPlaying, setPiiVideoPlaying] = useState(false);
+  const [videoFullscreen, setVideoFullscreen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const hash = location.hash?.slice(1);
+    if (hash === 'pii-sentinel-video') {
+      const el = document.getElementById(hash);
+      if (el) {
+        const t = setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+        return () => clearTimeout(t);
+      }
+    }
+  }, [location.pathname, location.hash]);
+
+  /* When coming from Products "Watch MVP Demo Video": show section, then zoom video to fullscreen and autoplay */
+  useEffect(() => {
+    const hash = location.hash?.slice(1);
+    const autoExpand = location.state?.autoExpandVideo;
+    if (!autoExpand || hash !== 'pii-sentinel-video') return;
+    const scrollEl = document.getElementById('pii-sentinel-video');
+    if (!scrollEl) return;
+    const scrollDone = setTimeout(() => {
+      setVideoFullscreen(true);
+      setPiiVideoPlaying(true);
+      navigate(location.pathname + '#' + (hash || ''), { replace: true, state: {} });
+    }, 900);
+    return () => clearTimeout(scrollDone);
+  }, [location.pathname, location.hash, location.state?.autoExpandVideo, navigate]);
 
   useEffect(() => {
     const observers = [];
@@ -180,7 +210,7 @@ export default function Solutions() {
       </section>
 
       {/* Section 3 — PII Sentinel MVP Demo (premium) */}
-      <section className={`${styles.sectionAlt} ${styles.sectionStripe} ${styles.piiSection}`} ref={(el) => (sectionRefs.current[2] = el)}>
+      <section id="pii-sentinel-video" className={`${styles.sectionAlt} ${styles.sectionStripe} ${styles.piiSection}`} ref={(el) => (sectionRefs.current[2] = el)}>
         <div className={styles.container}>
           <div className={styles.piiTitleRow}>
             <span className={styles.piiSectionIcon} aria-hidden>
@@ -188,39 +218,86 @@ export default function Solutions() {
             </span>
             <h2 className={styles.piiSectionTitle}>PII Sentinel — Privacy Intelligence Infrastructure in Action</h2>
           </div>
-          <div className={styles.videoWrapPremium}>
-            <div className={styles.videoCard}>
-              <div className={styles.videoAspect}>
-                {piiVideoPlaying ? (
-                  <iframe
-                    title="PII Sentinel MVP Demo"
-                    src={`https://www.youtube.com/embed/${PII_SENTINEL_YOUTUBE_ID}?autoplay=1`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className={styles.videoIframe}
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    className={styles.videoThumbnailWrap}
-                    onClick={() => setPiiVideoPlaying(true)}
-                    aria-label="Play PII Sentinel demo video"
-                  >
-                    <img
-                      src={PII_SENTINEL_THUMBNAIL}
-                      alt=""
-                      className={styles.videoThumbnail}
-                      onError={(e) => { e.target.onerror = null; e.target.src = PII_SENTINEL_THUMBNAIL_FALLBACK; }}
+          <div className={styles.videoOuterWrap}>
+            <div className={styles.videoWrapPremium}>
+              <div className={styles.videoCard}>
+                <div className={styles.videoAspect}>
+                  {piiVideoPlaying && !videoFullscreen ? (
+                    <iframe
+                      title="PII Sentinel MVP Demo"
+                      src={`https://www.youtube.com/embed/${PII_SENTINEL_YOUTUBE_ID}?autoplay=1&loop=1&playlist=${PII_SENTINEL_YOUTUBE_ID}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className={styles.videoIframe}
                     />
-                    <span className={styles.videoPlayBtn} aria-hidden>
-                      <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M8 5v14l11-7z" /></svg>
-                    </span>
-                    <span className={styles.videoThumbnailOverlay} aria-hidden />
-                  </button>
-                )}
+                  ) : (
+                    <button
+                      type="button"
+                      className={styles.videoThumbnailWrap}
+                      onClick={() => setPiiVideoPlaying(true)}
+                      aria-label="Play PII Sentinel demo video"
+                    >
+                      <img
+                        src={PII_SENTINEL_THUMBNAIL}
+                        alt=""
+                        className={styles.videoThumbnail}
+                        onError={(e) => { e.target.onerror = null; e.target.src = PII_SENTINEL_THUMBNAIL_FALLBACK; }}
+                      />
+                      <span className={styles.videoPlayBtn} aria-hidden>
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M8 5v14l11-7z" /></svg>
+                      </span>
+                      <span className={styles.videoThumbnailOverlay} aria-hidden />
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
+
+          {videoFullscreen &&
+            createPortal(
+              <div className={styles.videoFullscreenWrap} role="dialog" aria-modal="true" aria-label="PII Sentinel demo video fullscreen">
+                <button
+                  type="button"
+                  className={styles.videoFullscreenClose}
+                  onClick={() => setVideoFullscreen(false)}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setVideoFullscreen(false);
+                  }}
+                  aria-label="Close fullscreen video"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                </button>
+                {/* Tap-to-close layer: catches touches on tablet/mobile so they close fullscreen instead of opening YouTube */}
+                <div
+                  className={styles.videoFullscreenTapClose}
+                  onClick={() => setVideoFullscreen(false)}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setVideoFullscreen(false);
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Close fullscreen video"
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setVideoFullscreen(false); } }}
+                />
+                <div className={styles.videoWrapPremium}>
+                  <div className={`${styles.videoCard} ${styles.videoCardFullscreen}`}>
+                    <div className={styles.videoAspect}>
+                      <iframe
+                        title="PII Sentinel MVP Demo"
+                        src={`https://www.youtube.com/embed/${PII_SENTINEL_YOUTUBE_ID}?autoplay=1&loop=1&playlist=${PII_SENTINEL_YOUTUBE_ID}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className={styles.videoIframe}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>,
+              document.body
+            )}
           <p className={styles.videoDesc}>
             PII Sentinel is Anoryx's privacy-first intelligence platform designed to detect, analyze, and protect sensitive data across enterprise environments. The system uses agent-driven workflows and real-time analysis to identify personal identifiable information and automatically enforce protection mechanisms. Built using modular microservices and agent orchestration frameworks, PII Sentinel enables enterprises to deploy privacy-aware intelligence infrastructure without disrupting operational workflows.
           </p>

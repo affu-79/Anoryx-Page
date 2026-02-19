@@ -643,8 +643,9 @@ button.signupLink {
 }
 
 /* ── Responsive: Tablet & Mobile ─────────────────────────── */
+/* Portrait only; tablet landscape keeps desktop layout (see globals.css zoom). */
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (orientation: portrait) {
   .navbarInner {
     padding: 0;
   }

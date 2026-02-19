@@ -491,14 +491,65 @@
   text-align: center;
 }
 
-.enterpriseCTAs {
-  display: flex;
-  flex-wrap: wrap;
+.enterpriseMailLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0 0 var(--space-3);
+  letter-spacing: 0.02em;
+}
+
+.enterpriseMailPill {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  gap: var(--space-3);
+  padding: 12px var(--space-6);
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-secondary);
+  background: #fff;
+  border: 2px solid var(--color-border-default);
+  border-radius: 9999px;
+  text-decoration: none;
+  margin: 0 auto;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.enterpriseMailPill:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-secondary-light);
+  color: var(--color-secondary);
+}
+
+/* Wrapper so pill is centered */
+.enterpriseMailWrap {
+  display: flex;
+  justify-content: center;
 }
 
 /* ── Section 6: Social Links ────────────────────────────────── */
+.socialTitle {
+  font-family: var(--font-family-heading);
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.socialSubtitle {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0 auto var(--space-5);
+  max-width: 420px;
+}
+
 .socialWrap {
   display: flex;
   justify-content: center;
@@ -572,12 +623,4 @@
     grid-template-columns: 1fr;
   }
 
-  .enterpriseCTAs {
-    flex-direction: column;
-  }
-
-  .enterpriseCTAs .btnPrimary,
-  .enterpriseCTAs .btnSecondary {
-    width: 100%;
-  }
 }

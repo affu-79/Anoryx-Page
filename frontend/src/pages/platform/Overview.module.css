@@ -214,6 +214,7 @@
     opacity: 0;
     transform: scale(0.92);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -252,7 +253,9 @@
 .section.inView .sectionLabel,
 .sectionLayers.inView .sectionLabel,
 .sectionFlow.inView .sectionLabel,
-.sectionMetrics.inView .sectionLabel { transition-delay: 0ms; }
+.sectionMetrics.inView .sectionLabel {
+  transition-delay: 0ms;
+}
 
 .sectionTitle {
   font-family: var(--font-family-heading);
@@ -296,11 +299,26 @@
   transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.2s ease;
 }
 
-.section.inView .purposeCard { opacity: 1; transform: translateY(0); }
-.section.inView .purposeCard:nth-child(1) { transition-delay: 0ms; }
-.section.inView .purposeCard:nth-child(2) { transition-delay: 150ms; }
-.section.inView .purposeCard:nth-child(3) { transition-delay: 300ms; }
-.section.inView .purposeCard:nth-child(4) { transition-delay: 450ms; }
+.section.inView .purposeCard {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section.inView .purposeCard:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.section.inView .purposeCard:nth-child(2) {
+  transition-delay: 150ms;
+}
+
+.section.inView .purposeCard:nth-child(3) {
+  transition-delay: 300ms;
+}
+
+.section.inView .purposeCard:nth-child(4) {
+  transition-delay: 450ms;
+}
 
 .purposeCard:hover {
   transform: translateY(-6px);
@@ -382,13 +400,30 @@
   flex-shrink: 0;
 }
 
-.sectionLayers.inView .layerSlab { opacity: 1; transform: translateY(0); }
+.sectionLayers.inView .layerSlab {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-.layerSlab:nth-child(1) { transition-delay: 0ms; }
-.layerSlab:nth-child(2) { transition-delay: 200ms; }
-.layerSlab:nth-child(3) { transition-delay: 400ms; }
-.layerSlab:nth-child(4) { transition-delay: 600ms; }
-.layerSlab:nth-child(5) { transition-delay: 800ms; }
+.layerSlab:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.layerSlab:nth-child(2) {
+  transition-delay: 200ms;
+}
+
+.layerSlab:nth-child(3) {
+  transition-delay: 400ms;
+}
+
+.layerSlab:nth-child(4) {
+  transition-delay: 600ms;
+}
+
+.layerSlab:nth-child(5) {
+  transition-delay: 800ms;
+}
 
 .layerSlab:hover,
 .layerSlabActive {
@@ -447,13 +482,34 @@
   transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.section.inView .capCard { opacity: 1; transform: translateY(0); }
-.section.inView .capCard:nth-child(1) { transition-delay: 0ms; }
-.section.inView .capCard:nth-child(2) { transition-delay: 120ms; }
-.section.inView .capCard:nth-child(3) { transition-delay: 240ms; }
-.section.inView .capCard:nth-child(4) { transition-delay: 200ms; }
-.section.inView .capCard:nth-child(5) { transition-delay: 320ms; }
-.section.inView .capCard:nth-child(6) { transition-delay: 440ms; }
+.section.inView .capCard {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section.inView .capCard:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.section.inView .capCard:nth-child(2) {
+  transition-delay: 120ms;
+}
+
+.section.inView .capCard:nth-child(3) {
+  transition-delay: 240ms;
+}
+
+.section.inView .capCard:nth-child(4) {
+  transition-delay: 200ms;
+}
+
+.section.inView .capCard:nth-child(5) {
+  transition-delay: 320ms;
+}
+
+.section.inView .capCard:nth-child(6) {
+  transition-delay: 440ms;
+}
 
 .capCard:hover {
   transform: translateY(-5px);
@@ -514,7 +570,10 @@
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.sectionFlow.inView .flowNode { opacity: 1; transform: translateY(0); }
+.sectionFlow.inView .flowNode {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .flowConnector {
   position: absolute;
@@ -575,11 +634,26 @@
   transform: translateX(60px);
 }
 
-.section.inView .diffCard { opacity: 1; transform: translateX(0); }
-.section.inView .diffCard:nth-child(1) { transition-delay: 0ms; }
-.section.inView .diffCard:nth-child(2) { transition-delay: 120ms; }
-.section.inView .diffCard:nth-child(3) { transition-delay: 240ms; }
-.section.inView .diffCard:nth-child(4) { transition-delay: 360ms; }
+.section.inView .diffCard {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.section.inView .diffCard:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.section.inView .diffCard:nth-child(2) {
+  transition-delay: 120ms;
+}
+
+.section.inView .diffCard:nth-child(3) {
+  transition-delay: 240ms;
+}
+
+.section.inView .diffCard:nth-child(4) {
+  transition-delay: 360ms;
+}
 
 .diffCardIcon {
   display: flex;
@@ -892,6 +966,7 @@
 
 /* ── Disable scroll animations on tablet and mobile ───────────── */
 @media (max-width: 1024px) {
+
   .heroLabel,
   .heroTitle,
   .heroSubtitle,

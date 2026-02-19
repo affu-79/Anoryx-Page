@@ -144,9 +144,17 @@
   display: block;
 }
 
-.mockDots i:first-child { background: #ff5f57; }
-.mockDots i:nth-child(2) { background: #febc2e; }
-.mockDots i:nth-child(3) { background: #28c840; }
+.mockDots i:first-child {
+  background: #ff5f57;
+}
+
+.mockDots i:nth-child(2) {
+  background: #febc2e;
+}
+
+.mockDots i:nth-child(3) {
+  background: #28c840;
+}
 
 .mockTitleBar span:last-child {
   font-size: 12px;
@@ -211,9 +219,19 @@
   border-radius: 1px;
 }
 
-.statusOk { color: #22c55e; font-weight: 700; }
-.statusRun { color: #3b82f6; font-weight: 700; }
-.statusIdle { color: #94a3b8; }
+.statusOk {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.statusRun {
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+.statusIdle {
+  color: #94a3b8;
+}
 
 .mockAgents {
   display: flex;
@@ -249,7 +267,10 @@
   color: #5e6c84;
 }
 
-.statusLabel { flex-shrink: 0; }
+.statusLabel {
+  flex-shrink: 0;
+}
+
 .statusBarTrack {
   flex: 1;
   height: 6px;
@@ -257,13 +278,18 @@
   border-radius: 3px;
   overflow: hidden;
 }
+
 .statusBarFill {
   height: 100%;
   background: linear-gradient(90deg, var(--color-secondary, #0052cc), #0065ff);
   border-radius: 3px;
   transition: width 0.3s ease;
 }
-.statusPct { font-weight: 600; color: #172b4d; }
+
+.statusPct {
+  font-weight: 600;
+  color: #172b4d;
+}
 
 /* ── Article sections ───────────────────────────────────────────── */
 .articleSection {
